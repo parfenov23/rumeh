@@ -15,8 +15,9 @@ class DekoncApi
   end
 
   def self.find_post(id)
-    post = send_get("wp/v2/posts/#{id}")
-    curr_desc = all_desc_posts.select{|post_d| post_d["ID"].to_i == post["id"]}.last
+    post = Post.find(id)
+    curr_desc = {}
+    post.post_metas.map{|pm| curr_desc[pm.meta_key] = pm.meta_value}
     merge_params_post(post, curr_desc)
   end
 
@@ -29,13 +30,25 @@ class DekoncApi
     # binding.pry
     curr_desc["Thumbnail"] = curr_desc["Thumbnail"].present? ? curr_desc["Thumbnail"] : "http://dekonc.ru/wp-content/themes/wp-shop-22/images/no_foto.png"
     param = {
-      id: post["id"], title: curr_desc["post_title"], 
-      description: curr_desc["post_content"], retail: curr_desc["ritail_1"], usd: curr_desc["retail_usd_1"],
-      date: curr_desc["post_date"], status: post["status"], type_of_goods: curr_desc["type_of_goods"],
+      id: post["id"],
+      title: curr_desc["post_title"],
+      description: curr_desc["post_content"] || post["post_content"],
+      retail: curr_desc["ritail_1"],
+      usd: curr_desc["retail_usd_1"],
+      date: curr_desc["post_date"],
+      status: post["status"],
+      type_of_goods: curr_desc["type_of_goods"],
       type_of_retail: curr_desc["type_of_ritail"],
-      categories: post["categories"], tags: post["tags"], 
-      img_url: curr_desc["Thumbnail"], img_url_2: curr_desc["Thumbnail1"], img_url_3: curr_desc["Thumbnail2"], img_url_4: curr_desc["Thumbnail3"], img_url_5: curr_desc["Thumbnail4"],
-      old_price: clear_old_price(curr_desc["retail_old_price"]), type_new: curr_desc["retail_new"], count_title: curr_desc["name_1"]
+      categories: post["categories"],
+      tags: post["tags"],
+      img_url: curr_desc["Thumbnail"],
+      img_url_2: curr_desc["Thumbnail1"],
+      img_url_3: curr_desc["Thumbnail2"],
+      img_url_4: curr_desc["Thumbnail3"],
+      img_url_5: curr_desc["Thumbnail4"],
+      old_price: clear_old_price(curr_desc["retail_old_price"]),
+      type_new: curr_desc["retail_new"],
+      count_title: curr_desc["name_1"]
     }
     param[:retail] = param[:usd].to_f > 0 ? (param[:usd].to_f * usd_rub).round(2) : param[:retail].to_f.round(2)
     param[:retail] = (param[:retail] % 1) == 0 ? param[:retail].to_f.round(2) : param[:retail]
@@ -133,6 +146,7 @@ class DekoncApi
   end
 
   def self.send_get(url, curr_domain = default_url)
+    p "========== #{url}"
     agent = Mechanize.new
     time_hash = Rails.env.production? ? 5 : 0
     url = "#{curr_domain}#{url}"
