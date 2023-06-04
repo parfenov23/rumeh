@@ -1,0 +1,9 @@
+.popupCart style=(@status_payment_order.present? ? "display: initial;" : "")
+  #wpshop_shadow_window data-url=(@status_payment_order.present? ? "/" : "")
+  #wpshop_background_alert_put_to_cart
+    div
+      = @status_payment_order.present? ? "Платеж успешно выполнен!" : "Успешно добавлено в корзину!"
+      #wpshop_alert_put_to_cart_buttons
+        - if @status_payment_order.blank?
+          a.wpshop-button onclick=("document.location='/cart/';")  Оформить заказ
+          a#continueButton.wpshop-button onclick=("document.getElementsByClassName('popupCart')[0].style.display = 'none';") Продолжить покупки

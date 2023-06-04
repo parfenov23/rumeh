@@ -1,0 +1,49 @@
+- title "Интернет-магазин искусственного меха и тканей"
+= render "slider"
+#main-content.narrow.floatRight
+  - page = DekoncApi.find_page(9008)
+  #desc
+    = raw page[:content]
+  .clear
+  #cat_vitrina
+    ul
+      - @categories.each do |category|
+        li
+          a href="/category/#{category[:id]}" title=category[:name]
+            div
+              h3 = category[:name]
+              p
+
+    .clear
+  .clear
+  #vitrina
+    /! 275
+    /! tag is not selected
+    /! field is not selected
+    /! price is not selected
+    /! rand
+    / form#order.floatLeft.bottom20 method="get" 
+    /   | Сортировать
+    /   select name="select" onchange="this.form.submit()" 
+    /     option value="title"  по заголовку
+    /     option value="date"  по дате
+    /     option value="meta_value_num"  По цене
+    /     option selected="selected" value="rand"  случайно
+    /   select.right15 name="order_query" onchange="this.form.submit()" 
+    /     option selected="selected" value="ASC"  увеличение
+    /     option value="DESC"  уменьшение
+    /   | Показать на странице:
+    /   select name="per_page" onchange="this.form.submit();" 
+    /     option selected="selected" value="12"  12
+    /     option value="24"  24
+    /     option value="48"  48
+    /     option value="100"  100
+    .clear
+    #vitrina_inn.clearfix
+      - @posts.each do |post|
+        = render "item", {post: post}
+    .clear
+  /! #vitrina
+  .clear
+        /! end respond div
+/! #main-content

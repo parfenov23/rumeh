@@ -1,0 +1,98 @@
+- title "Корзина"
+#main-content.fullwidth
+  h1.page_title Корзина
+  #desc
+    #wpshop_cart
+      - if session[:items].present?
+        table#recycle_bin.recycle_bin border="0" cellpadding="5" cellspacing="0" 
+          thead
+            tr
+              th
+              th.name Наименование
+              th.type
+              th.cost Стоимость (руб.)
+              th.num Количество
+              th.total Сумма (руб.)
+              th.delete &nbsp;
+          tbody
+            - sum_cart_items = 0
+            - session[:items].each do |item|
+              - post = DekoncApi.find_post(item["id"])
+              tr.rb_item valign="top" 
+                td.rb_img
+                  a href="/item/#{post[:id]}"
+                    img src=post[:img_url]
+                td.rb_name
+                  a href="/item/#{post[:id]}" = post[:title]
+                td.rb_type руб./пог.м&nbsp;
+                td.rb_cost = post[:retail]
+                td.rb_num
+                  span.minus.minus_0.js_addItemToCart data-id=post[:id] data-title=post[:title] data-count="-1" data-price=post[:retail]  −
+                  input.input_0 maxlength="6" size="3" type="text" disabled=true value=item["count"]
+                  span.plus.plus_0.js_addItemToCart data-id=post[:id] data-title=post[:title] data-count="1" data-price=post[:retail] +
+                - sum_cart_items += post[:retail] * item["count"]
+                td.rb_total = round_num(post[:retail] * item["count"])
+                td.rb_delete.js_removeItemInCart data-id=post[:id]
+                  span ×
+          
+
+          tfoot
+            tr.all_price
+              td align="right" colspan="5" 
+                strong ИТОГО:
+              td.rb_total.cost
+                strong = round_num(sum_cart_items)
+              td.rb_delete.js_removeAllItemsInCart
+                span ×
+            / tr#delivery_cost style="display:none;text-align:right;margin-top:15px" 
+            /   td colspan="5" style="font-weight:bold" 
+            /     | Стоимость с учетом доставки
+            /     span#delivery_name
+            /     | (
+            /     span#delivery_cost_value
+            /     | руб.)
+            /     a#delivery_link
+            /     span#free_delivery style="color:red;" 
+            /   td#delivery_cost_total style="text-align:left;font-weight:bold" 
+            /   td.last_col_del
+      - else
+        p style="text-align: center;font-size: 24px;padding: 80px;" Ваша корзина пуста.
+      a name="wp-shop_down" 
+      div
+        br
+        form#wpshop-form method="GET" 
+          input name="step" type="hidden" value="2"
+          - if session[:items].present?
+            .wpshop-button.js_openFormOrderRequest Оформить заказ
+          a.wpshop-button onclick=("document.location = '/';")  Продолжить покупки
+
+  .clear.bottom20
+.popupOrderRequest
+  #modelaPopup
+    .title Оформление заказа
+    form.contentPopup.validate
+      div * - Обязательные поля
+      p.field Способ доставки
+      select name="deliver" style="width: 100%;height: 40px;font-size: 14px;"
+        option value="Доставка курьерской службой СДЭК" Доставка курьерской службой СДЭК
+        option value="Доставка почтой по России и СНГ" Доставка почтой по России и СНГ
+        option value="Доставка транспортными компаниями" Доставка транспортными компаниями
+      
+      p.field Имя
+      input name="last_name" type="text" value=""
+      p.field Email
+      input name="email" type="text" value=""
+      p.field Телефон
+      input name="phone" type="text" value=""
+      p Комментарий к заказу
+      textarea name="comment" type="text" value=""
+      .btn
+        span Заполните обязательные поля!
+        .buttonFormSubmit.js_buttonFormSubmit Отправить заказ
+      .politics style="margin-top: 24px;text-align: right;font-size: 10px;" 
+        |Нажимая кнопку отправить вы соглашаетесь с
+        a style="padding-left: 4px;text-decoration: underline;" href="/politics" target="_blank"
+          |ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ И ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ
+    .endOrderRequest Ваш заказ отправлен. Ожидайте письма с подтверждением заказа и ссылкой на оплату.
+  #modalBlackoutWindow
+

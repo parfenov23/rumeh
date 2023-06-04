@@ -1,0 +1,14 @@
+- title "Доставка"
+- page = DekoncApi.find_page(8993)
+#main-content.narrow.floatRight
+  h1.page_title = page[:title]
+  #desc
+    = raw page[:content]
+  .clear.bottom20
+  / #comments_bar
+  /   /! You can start editing here.
+  /   #comment-wrap.clearfix
+  /     #comment-section.nocomments
+  /       /! If comments are closed.
+  /       #respond
+  /       /! end respond div

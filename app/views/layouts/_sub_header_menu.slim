@@ -1,0 +1,19 @@
+ul.sub-menu
+  - sub_categories.each do |category|
+    - arr_class = []
+    - arr_class << (params[:id].to_i == category[:id] || category_min(category)[:childs].include?(params[:id].to_i).present? ? "current_page_item" : "")
+    -  arr_class << (category[:childs].present? ? "menu-item-has-children" : "")
+    li#menu-item-2995.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2995 class=arr_class.uniq.join(" ")
+      a href="/category/#{category[:id]}"  = category[:name]
+      = render "layouts/sub_header_menu", {sub_categories: category[:childs]} if category[:childs].present?
+      / ul.sub-menu
+      /   li#menu-item-3000.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-3000
+      /     a href="http://dekonc.ru/meh/dlya-verxnej-odezhdy/dlya-verxnej-odezhdy-dlinnovorsovyj/"  Длинноворсовый
+      /   li#menu-item-2996.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2996
+      /     a href="http://dekonc.ru/meh/dlya-verxnej-odezhdy/dlya-verxnej-odezhdy-zhakkardovyj/"  Жаккардовый
+      /   li#menu-item-2997.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2997
+      /     a href="http://dekonc.ru/meh/dlya-verxnej-odezhdy/dlya-verxnej-odezhdy-muton/"  Мутон
+      /   li#menu-item-2998.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2998
+      /     a href="http://dekonc.ru/meh/dlya-verxnej-odezhdy/dlya-verxnej-odezhdy-norka/"  Норка
+      /   li#menu-item-2999.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2999
+      /     a href="http://dekonc.ru/meh/dlya-verxnej-odezhdy/dlya-verxnej-odezhdy-cigejka/"  Цигейка

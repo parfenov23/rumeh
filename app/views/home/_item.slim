@@ -1,0 +1,28 @@
+#item 
+  .item_inn style="height:350px;" 
+    .img
+      a href="/item/#{post[:id]}"
+        - if post[:old_price].present?
+          .sale_label Sale
+        - if post[:type_new] == "1"
+          .new_label New
+        img alt=post[:title] src=post[:img_url] title=post[:title] width="200"
+    a#item_title href="/item/#{post[:id]}" = post[:title]
+    .price_box style="width: 100%;"
+      - if post[:old_price].present? && post[:old_price] > 0
+        .floatLeft.old_price
+           span.through #{post[:old_price]} руб
+      .wpshop_bag
+        input name="wpshop-good-title-7429" type="hidden" value="32-Beige-2" 
+        .wpshop_buy
+          table border="0" cellpadding="5" cellspacing="0" width="100%" 
+            tbody
+              tr.line_1.first_price
+                td.wpshop_price
+                  div style=("line-height: 20px;") 
+                    = "#{post[:retail]} руб."
+                td.wpshop_count
+                  input#goods_count_7429_1 maxlength="4" name="goods_count_7429_1" size="3" type="text" value="1" 
+                td.wpshop_button
+                  .cart_button.js_addItemToCart data-id=post[:id] data-price=post[:retail] data-count=1 data-title=post[:title]
+                    span Купить

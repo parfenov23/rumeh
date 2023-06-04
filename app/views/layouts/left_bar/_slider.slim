@@ -1,0 +1,39 @@
+- all_sliders = DekoncApi.all_sliders("rumeh_left")
+- all_post_categories = DekoncApi.posts({categories: all_sliders.map{|as| as[:slider_url]}, per_page: 100})
+- all_sliders.each do |slider|
+  - category_id = slider[:slider_url]
+  - all_posts = all_post_categories.select{|aps| aps[:categories].include?(category_id.to_i)}
+  li#sidebar_slider_wrapp
+    h3
+      = slider[:title]
+      span.icon-plus-sign
+    .slider_sidebar_wrapp style="" 
+      #rotator_sidebar
+        .cycle-slideshow.cycle-carousel-wrap.slideshow.vertical data-cycle-fx="overlay" data-cycle-timeout="7000" data-cycle-carousel-visible="1" data-cycle-auto-height="false" data-cycle-slides="div.slider_rotator" data-cycle-next="#next#{slider[:id]}" data-cycle-prev="#prev#{slider[:id]}" data-cycle-carousel-vertical="true"
+          - all_posts.each do |post|
+            .slider_rotator.cycle-slide
+              .slider_rotator_inn
+                .img
+                  a href="/item/#{post[:id]}" 
+                    img alt=post[:title] src=post[:img_url] title=post[:title] width="200"
+                a.item_title href="/item/#{post[:id]}" = post[:title]
+                .price_box
+                  .wpshop_bag
+                    .wpshop_buy
+                      table border="0" cellpadding="5" cellspacing="0" width="100%" 
+                        tbody
+                          tr.line_1.first_price
+                            td.wpshop_caption
+                              | руб./кв.м
+                            td.wpshop_price
+                              div style=("line-height: 20px;") 
+                                = "#{post[:retail]} руб."
+                            td.wpshop_button
+                              .cart_button.js_addItemToCart data-id=post[:id] data-title=post[:title] data-price=post[:retail] data-count=1
+                                span Купить
+          a.next_sidebar id="next#{slider[:id]}" href="javascript:void(0)"
+          a.prev_sidebar id="prev#{slider[:id]}" href="javascript:void(0)"
+
+    .clear
+  /! .slider_sidebar_wrapp
+/! #slider_wrapp

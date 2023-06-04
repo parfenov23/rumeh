@@ -1,0 +1,31 @@
+p = "Ваш заказ ID: #{@order_id} уже обрабатывается. Ожидайте письма со счётом на оплату."
+p = "ФИО: #{@params[:last_name]}"
+p = "Способ доставки: #{@params[:deliver]}"
+p = "Email: #{@params[:email]}"
+p = "Телефон: #{@params[:phone]}"
+p ="Комментарий: #{@params[:comment]}"
+br
+br
+table style="border: 1px solid grey;width: 100%;"
+  tr
+    th style="border: 1px solid grey;" Наименование
+    th style="border: 1px solid grey;" Цена за шт
+    th style="border: 1px solid grey;" Кол-во
+    th style="border: 1px solid grey;" Сумма
+  /! ряд с ячейками заголовков
+  - all_sum = 0
+  - @items.each do |item|
+    - origin_item = DekoncApi.find_post(item['id'])
+    tr
+      td style="border: 1px solid grey;" = item['title']
+      td style="border: 1px solid grey;" = origin_item[:retail]
+      td style="border: 1px solid grey;" = item['count']
+      - sum = (origin_item[:retail] * item['count'])
+      td style="border: 1px solid grey;" = sum
+      - all_sum += sum
+  /! ряд с ячейками тела таблицы
+  tr
+    td
+    td 
+    td style="border: 1px solid grey;" Итого:
+    td style="border: 1px solid grey;" = all_sum

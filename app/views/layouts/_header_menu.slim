@@ -1,0 +1,21 @@
+#menu-wrap-wide.clearfix
+  .container.relat
+    #menu-wrap.desktop style=("display: block;") 
+      #menu-trigger style=("display: none;") 
+        | Меню
+        span.menu-icon.icon-plus-sign-alt
+      ul#menu-custom
+        - @categories.each do |category|
+          - if category[:id] != 1
+            - arr_class = []
+            - arr_class << (params[:id].to_i == category[:id] || category_min(category)[:childs].include?(params[:id].to_i).present? ? "current_page_item" : "")
+            -  arr_class << (category[:childs].present? ? "menu-item-has-children" : "")
+            li#menu-item-3022.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-3022 class=arr_class.uniq.join(" ")
+              a href="/category/#{category[:id]}"  = category[:name]
+              = render "layouts/sub_header_menu", {sub_categories: category[:childs]} if category[:childs].present?
+        li#menu-item-3022.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-3022
+          a href="/sales"  Акции
+        li#menu-item-3022.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-3022
+          a href="/news"  Новости
+        li#menu-item-3022.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-3022
+          a href="/new_posts"  Новинки

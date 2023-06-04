@@ -1,0 +1,27 @@
+h2.page_title.similar_text Похожие товары:
+#rotator_cont
+  #rotator.cycle-slideshow.slideshow data-cycle-fx="carousel" data-cycle-next="#next_rotator" data-cycle-prev="#prev_rotator" data-cycle-slides="div#item_rotator" data-cycle-timeout="0"
+    - DekoncApi.posts({categories: @post[:categories].first, per_page: 100}).each do |post|
+      .cycle-slide.cycle-sentinel#item_rotator
+        .item_rotator_inn
+          .img
+            a href="/item/#{post[:id]}"
+              img alt=post[:title] src="#{post[:img_url]}" title=post[:title] width="170"
+              - if post[:old_price].present? && post[:old_price] > 0
+                .sale_label Sale
+          a#item_title href="/item/#{post[:id]}" = post[:title]
+          .price_box
+            .wpshop_bag
+              .wpshop_buy
+                table border="0" cellpadding="5" cellspacing="0" width="100%" 
+                  tbody 
+                    tr.line_1.first_price 
+                      td.wpshop_price 
+                        div
+                          = post[:retail]
+                      / td.wpshop_button 
+                      /   .cart_button.js_addItemToCart data-id=1 data-title="post[:title]" data-price=100 data-count=1
+                      /     span Купить
+
+  a#next_rotator.prev_rotator href="#" 
+  a#prev_rotator.next_rotator href="#"

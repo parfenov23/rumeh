@@ -1,0 +1,71 @@
+#menu-wrap-top-wide.clearfix
+  .container.relat
+    .menu_top.floatRight.relat.clearfix
+      ul#menu-2menyu
+        li#menu-item-5341.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-home.page_item.page-item-2 class=(params[:action] == "index" ? "current_page_item " : "")
+          a href="/"  Главная
+        li#menu-item-4419.menu-item.menu-item-type-post_type.menu-item-object-page class=(params[:action] == "contact" ? "current_page_item " : "")
+          a href="/contact"  Контакты
+        li#menu-item-4418.menu-item.menu-item-type-post_type.menu-item-object-page class=(params[:action] == "payment" ? "current_page_item " : "")
+          a href="/payment"  Оплата
+        li#menu-item-4418.menu-item.menu-item-type-post_type.menu-item-object-page class=(params[:action] == "deliver" ? "current_page_item " : "")
+          a href="/deliver"  Доставка
+        li#menu-item-4418.menu-item.menu-item-type-post_type.menu-item-object-page
+          a href="/feedback"  Обратная связь
+    .mobile-link-top.header-button
+      .icon_wrapp
+        span.arrow_header_top_menu.arrow_header_top.icon-reorder
+      ul#mobilelink
+        li.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-home.current-menu-item.page_item.page-item-2.current_page_item
+          a href="/"  Главная
+        li.menu-item.menu-item-type-post_type.menu-item-object-page
+          a href="/contact"  Контакты
+        li.menu-item.menu-item-type-post_type.menu-item-object-page
+          a href="/payment"  Оплата
+        li.menu-item.menu-item-type-post_type.menu-item-object-page
+          a href="/deliver"  Доставка
+        li.menu-item.menu-item-type-post_type.menu-item-object-page
+          a href="/feedback"  Обратная связь
+#header_wrapp.clearfix
+  .container.relat
+    .logo.floatLeft.relat
+      #height_metter.relat
+        a href="/" title=("Интернет-магазин искусственного меха и тканей") 
+          h1#blog_title РУМЕХ
+        h5.description Интернет-магазин искусственного меха и тканей
+    
+    #cart_box.floatRight.relat.carBoxOriginal
+      a#cart_arrow.cart_link href="/cart" 
+        #wpshop_minicart class=(all_count_cart > 0 ? "max_cart" : "")
+          .minicart Ваша корзина пуста.
+          .wpshop_widget
+            .wpshop_mini_count
+              strong Позиций:
+              span.count = all_count_cart
+            .wpshop_mini_sum
+              strong Итого:
+              span.sum = all_sum_cart
+              span руб.
+            .wpshop_mini_under
+
+    #cart_box.floatRight.relat.floatFixedCard
+      a#cart_arrow.cart_link href="/cart" 
+        #wpshop_minicart class=(all_count_cart > 0 ? "max_cart" : "")
+          .minicart Ваша корзина пуста.
+          .wpshop_widget
+            .wpshop_mini_count
+              strong Позиций:
+              span.count = all_count_cart
+            .wpshop_mini_sum
+              strong Итого:
+              span.sum = all_sum_cart
+              span руб.
+            .wpshop_mini_under      
+
+    #cell.floatRight
+      img src="/phone.png" 
+      |+7 (922) 177-95-85
+    #vk.floatRight
+      a target="_blank" href="https://vk.com/rumeh"
+        img src="/vk.png"
+    .clear

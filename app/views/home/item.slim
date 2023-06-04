@@ -1,0 +1,63 @@
+- title "#{@post[:title]}"
+#main-content.narrow.floatRight
+  #single_wrapper.galery
+    #galery_wrapp
+      .main_img
+        img.container_img alt=@post[:title] src=@post[:img_url] style=("visibility: visible;") title=@post[:title]
+        - if @post[:old_price].present? && @post[:old_price] > 0
+          .sale_label Sale
+        - if @post[:type_new] == "1"
+          .new_label New
+      .clear
+      .thumb_img
+        img data-tmb-large=@post[:img_url] src=@post[:img_url]
+      - if @post[:img_url_2].present?
+        .thumb_img
+          img data-tmb-large=@post[:img_url_2] src=@post[:img_url_2]
+      - if @post[:img_url_3].present?
+        .thumb_img
+          img data-tmb-large=@post[:img_url_3] src=@post[:img_url_3]
+      - if @post[:img_url_4].present?
+        .thumb_img
+          img data-tmb-large=@post[:img_url_4] src=@post[:img_url_4]
+      - if @post[:img_url_5].present?
+        .thumb_img
+          img data-tmb-large=@post[:img_url_5] src=@post[:img_url_5]          
+    /! #galery_wrapp
+    h2.page_title = @post[:title]
+    .floatLeft.bottom40 style="font-size: 18px !important;line-height: 37px;"
+      = @post[:count_title]
+    .floatRight.bottom40
+      .wpshop_bag
+        .wpshop_buy
+          table border="0" cellpadding="5" cellspacing="0" width="100%" 
+            tbody
+              tr.line_1
+                / td.wpshop_caption
+                /   |руб./пог.м
+                td.wpshop_price
+                  div style=("line-height: 20px;") 
+                    = "#{@post[:retail]} руб."
+                td.wpshop_count
+                  input.js_changeGoodsCount maxlength="4" name="goods_count" size="3" type="text" value="1"
+                td.wpshop_button
+                   .cart_button.js_addItemToCart data-id=@post[:id] data-title=@post[:title] data-price=@post[:retail] data-count=1
+                    span Купить
+    #desc.just.clearRight
+      = raw @post[:description].gsub("\r\n\r\n", "<br\> <br\>").gsub("\n\n", "<br\> <br\>")
+    .clear.bottom40 style=" font-size: 18px; color: red;"
+      |При покупке от 6 пог.м предоставляются скидки
+    .simular
+      = render "home/simular_item"
+  /! #single_wrapper
+  .clear
+  - if Rails.env.production?
+    #comments_bar
+      /! You can start editing here.
+      #comment-wrap.clearfix
+        #comment-section.nocomments
+          /! If comments are open, but there are no comments.
+        #respond.comment-respond
+          = render "item_comments"
+        /! #respond
+    .clear.bottom40

@@ -1,0 +1,26 @@
+/ #slideshow_wrapp.narrow.floatRight.bottom30.relat style=("display: block;") 
+/   #slideshow.nivoSlider
+/     a.nivo-imageLink href="http://dekonc.ru/iskusstvennyj-mex-kitaj/dlya-detskogo-tekstilya-kitaj/dlya-detskogo-tekstilya-kitaj-streak-1-10-mm/" style=("display: none;") 
+/       img src="./uploads_files/Слайдер-STREAK1.jpg" style=("width: 878px; visibility: hidden;") /
+/     a.nivo-imageLink href="http://dekonc.ru/?post_type=post&amp;s=%D0%BF%D0%BE%D0%B4+%D1%80%D1%8B%D1%81%D1%8C" style=("display: none;") 
+/       img src="./uploads_files/слайдер-под-рысь.jpg" style=("width: 878px; visibility: hidden;") /
+/     a.nivo-imageLink href="http://dekonc.ru/meh/dlya-verxnej-odezhdy/dlya-verxnej-odezhdy-dlinnovorsovyj/" style=("display: none;") 
+/       img src="./uploads_files/слайдер-длинноворсовый.jpg" style=("width: 878px; visibility: hidden;") /
+/     a.nivo-imageLink href="http://dekonc.ru/meh/dlya-igrushek/zhakkard/" style=("display: none;") 
+/       img src="./uploads_files/слайдер-меха.jpg" style=("width: 878px; visibility: hidden;") /
+/     a.nivo-imageLink href="http://dekonc.ru/?post_type=post&amp;s=%D0%BF%D0%BB%D1%8E%D1%88+%D0%BC%D0%B8%D0%BD%D0%BA%D0%B8" style=("display: block;") 
+/       img src="./uploads_files/слайдер-плюшминки.jpg" style=("width: 878px; visibility: hidden;") /
+/     img.nivo-main-image src="./uploads_files/слайдер-плюшминки.jpg" style=("display: inline; height: auto; overflow: hidden; width: 878px;") /
+/     .nivo-caption style=("display: none;") 
+/     .nivo-directionNav
+/       a.nivo-prevNav Prev
+/       a.nivo-nextNav Next
+/   /! #slideshow
+/ /! #slideshow_wrapp 
+
+#slideshow_wrapp.narrow.floatRight.bottom30.relat style=("display: block;") 
+  #slideshow.nivoSlider
+    - DekoncApi.all_sliders.each do |slider|
+      - if slider[:img_url].present?
+        a href=slider[:slider_url]
+          img src=slider[:img_url]

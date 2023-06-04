@@ -1,0 +1,29 @@
+- title "Обратная свзяь"
+#main-content.narrow.floatRight
+  h1.page_title Обратная свзяь
+  #desc
+    form.contentPopup.validate
+      div * - Обязательные поля
+      p.field Имя
+      input name="last_name" type="text" value=""
+      p.field Email
+      input name="email" type="text" value=""
+      p.field Тема сообщения
+      input name="title" type="text" value=""
+      p.field Сообщение
+      textarea name="messages" type="text" value="" style="width: 100%; height: 150px;"
+      .btn
+        span Заполните обязательные поля!
+        .buttonFormSubmit.js_buttonFormSubmit data-type="feedback" Отправить
+  .clear.bottom20
+  / #comments_bar
+  /   /! You can start editing here.
+  /   #comment-wrap.clearfix
+  /     #comment-section.nocomments
+  /       /! If comments are closed.
+  /       #respond
+  /       /! end respond div
+.popupOrderRequest
+  #modelaPopup
+    .endOrderRequest Спасибо за обращение. Ожидайте ответа на вашу почту.
+  #modalBlackoutWindow

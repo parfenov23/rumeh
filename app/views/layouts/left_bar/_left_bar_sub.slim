@@ -1,0 +1,7 @@
+ul.sub-menu
+  - sub_categories.each do |category|
+    li#menu-item-2836.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-2836.parent_dir class=(category[:childs].present? ? "menu-item-has-children" : "")
+      a href="/category/#{category[:id]}" = category[:name]
+      - if category[:childs].present?
+        span.grower
+        = render "layouts/left_bar/left_bar_sub", {sub_categories: category[:childs]}
