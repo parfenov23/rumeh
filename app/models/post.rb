@@ -115,7 +115,7 @@ class Post < ApplicationRecord
     price = post_metas.get_val("retail_old_price")
 
     if price.present?
-      return price.scan("$").present? ? (price.gsub("$", "").to_f * usd_rub).round(2) : price.to_f
+      return price.scan("$").present? ? (price.gsub("$", "").to_f * DekoncApi.usd_rub).round(2) : price.to_f
     end
   end
 

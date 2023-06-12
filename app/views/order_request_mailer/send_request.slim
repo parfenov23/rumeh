@@ -14,13 +14,14 @@ table style="border: 1px solid grey;width: 100%;"
     th style="border: 1px solid grey;" Сумма
   /! ряд с ячейками заголовков
   - all_sum = 0
-  - @items.each do |item|
-    - origin_item = DekoncApi.find_post(item['id'])
+  - @all_posts.each do |post|
+    - retail = post_retail_price(post)
+    - item = session[:items].select { |i| i["id"].to_s == post.id.to_s }.last
     tr
       td style="border: 1px solid grey;" = item['title']
-      td style="border: 1px solid grey;" = origin_item[:retail]
+      td style="border: 1px solid grey;" = retail
       td style="border: 1px solid grey;" = item['count']
-      - sum = (origin_item[:retail] * item['count'])
+      - sum = (retail * item['count'])
       td style="border: 1px solid grey;" = sum
       - all_sum += sum
   /! ряд с ячейками тела таблицы
