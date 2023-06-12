@@ -1,12 +1,3 @@
-- title "Поиск по фильтру"
-#main-content.narrow.floatRight
-  .lineSort style="display: flex;justify-content: flex-end;margin-bottom: 24px;"
-    - if @get_pagination_count > 0 || params[:sf_paged].present?
-      = will_paginate(pagination_arry( @get_pagination_count, params[:sf_paged] ), {previous_label: "«", next_label: "»", :class => "navigation", :params => params, param_name: "sf_paged"})
-  #vitrina_inn.clearfix
-    - @find_posts.each do |post|
-      = render "home/item", {post: post}
-      /! #item
-
-  - if @get_pagination_count > 0 || params[:sf_paged].present?
-    = will_paginate(pagination_arry( @get_pagination_count, params[:sf_paged] ), {previous_label: "«", next_label: "»", :class => "navigation", :params => params, param_name: "sf_paged"})
+- curr_title = "Поиск по фильтру"
+- title "#{curr_title}"
+= render "home/content_page_items", {find_posts: @find_posts, curr_title: curr_title}

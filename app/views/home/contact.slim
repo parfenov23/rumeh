@@ -1,9 +1,9 @@
 - title "Контакты"
-- page = DekoncApi.find_page(9005)
+- page = Post.find(9005)
 #main-content.narrow.floatRight
-  h1.page_title = page[:title]
+  h1.page_title = page.post_title
   #desc
-    = raw page[:content]
+    = raw page.post_content
   .clear.bottom20
   / #comments_bar
   /   /! You can start editing here.

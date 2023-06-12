@@ -1,32 +1,26 @@
-- title "#{@post[:title]}"
+- title "#{@post.post_title}"
 #main-content.narrow.floatRight
   #single_wrapper.galery
     #galery_wrapp
       .main_img
-        img.container_img alt=@post[:title] src=@post[:img_url] style=("visibility: visible;") title=@post[:title]
-        - if @post[:old_price].present? && @post[:old_price] > 0
+        img.container_img alt=@post.post_title src=get_post_meta_val(@post, "Thumbnail")  style=("visibility: visible;") title=@post.post_title
+        - if post_old_price(@post).present?
           .sale_label Sale
-        - if @post[:type_new] == "1"
+        - if get_post_meta_val(@post, "retail_new").to_s == "1"
           .new_label New
       .clear
       .thumb_img
-        img data-tmb-large=@post[:img_url] src=@post[:img_url]
-      - if @post[:img_url_2].present?
-        .thumb_img
-          img data-tmb-large=@post[:img_url_2] src=@post[:img_url_2]
-      - if @post[:img_url_3].present?
-        .thumb_img
-          img data-tmb-large=@post[:img_url_3] src=@post[:img_url_3]
-      - if @post[:img_url_4].present?
-        .thumb_img
-          img data-tmb-large=@post[:img_url_4] src=@post[:img_url_4]
-      - if @post[:img_url_5].present?
-        .thumb_img
-          img data-tmb-large=@post[:img_url_5] src=@post[:img_url_5]          
+        img data-tmb-large=get_post_meta_val(@post, "Thumbnail") src=get_post_meta_val(@post, "Thumbnail")
+      - 4.times do |i|
+        - img_url = get_post_meta_val(@post, "Thumbnail#{i+1}")
+        - if img_url.present?
+          .thumb_img
+            img data-tmb-large=img_url src=img_url
+
     /! #galery_wrapp
-    h2.page_title = @post[:title]
+    h2.page_title = @post.post_title
     .floatLeft.bottom40 style="font-size: 18px !important;line-height: 37px;"
-      = @post[:count_title]
+      = get_post_meta_val(@post, "name_1")
     .floatRight.bottom40
       .wpshop_bag
         .wpshop_buy
@@ -37,18 +31,18 @@
                 /   |руб./пог.м
                 td.wpshop_price
                   div style=("line-height: 20px;") 
-                    = "#{@post[:retail]} руб."
+                    = "#{post_retail_price(@post)} руб."
                 td.wpshop_count
                   input.js_changeGoodsCount maxlength="4" name="goods_count" size="3" type="text" value="1"
                 td.wpshop_button
-                   .cart_button.js_addItemToCart data-id=@post[:id] data-title=@post[:title] data-price=@post[:retail] data-count=1
+                   .cart_button.js_addItemToCart data-id=@post.id data-title=@post.post_title data-price=post_retail_price(@post) data-count=1
                     span Купить
     #desc.just.clearRight
-      = raw @post[:description].gsub("\r\n\r\n", "<br\> <br\>").gsub("\n\n", "<br\> <br\>")
+      = raw @post.post_content.gsub("\r\n\r\n", "<br\> <br\>").gsub("\n\n", "<br\> <br\>")
     .clear.bottom40 style=" font-size: 18px; color: red;"
       |При покупке от 6 пог.м предоставляются скидки
-    .simular
-      / = render "home/simular_item"
+    .simular data-t=@post.categories
+      = render "home/simular_item", {curr_category: @post.categories.first}
   /! #single_wrapper
   .clear
   - if Rails.env.production?

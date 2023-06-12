@@ -42,4 +42,29 @@ module ApplicationHelper
   def page_title(default_title = '')
     @page_title || default_title
   end
+
+  def get_post_meta_val(post, key)
+    (post.post_metas.select{|y| y[:meta_key] == key}.last || {})[:meta_value]
+  end
+
+  def post_old_price(post)
+    val = get_post_meta_val(post, "retail_old_price")
+
+    if val.present?
+      return val.scan("$").present? ? (val.gsub("$", "").to_f * get_usd_rub).round(2) : val.to_f
+    end
+  end
+
+  def post_retail_price(post)
+    curr_retail = get_post_meta_val(post, "ritail_1")
+    usd = get_post_meta_val(post, "retail_usd_1")
+    curr_retail = usd.to_f > 0 ? (usd.to_f * get_usd_rub).round(2) : curr_retail.to_f.round(2)
+    curr_retail = (curr_retail % 1) == 0 ? curr_retail.to_f.round(2) : curr_retail
+
+    curr_retail
+  end
+
+  def get_usd_rub
+    @get_usd_rub ||= DekoncApi.usd_rub
+  end
 end

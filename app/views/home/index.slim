@@ -1,9 +1,9 @@
 - title "Интернет-магазин искусственного меха и тканей"
 = render "slider"
 #main-content.narrow.floatRight
-  - page = DekoncApi.find_page(9008)
+  - page = Post.find(9008)
   #desc
-    = raw page[:content]
+    = raw page.post_content
   .clear
   #cat_vitrina
     ul
@@ -40,8 +40,9 @@
     /     option value="100"  100
     .clear
     #vitrina_inn.clearfix
-      - @posts.each do |post|
-        = render "item", {post: post}
+      - cache @post do
+        - @posts.each do |post|
+          = render "item", {post: post}
     .clear
   /! #vitrina
   .clear

@@ -1,18 +1,5 @@
 - curr_title = "Новинки"
 - title "#{curr_title}"
-#main-content.narrow.floatRight
-  h1.page_title = curr_title
-
-  .lineSort style="display: flex;justify-content: space-between;"
-    = render "home/sort_posts"
-
-    - if @count_page > 0 || params[:page].present?
-      = will_paginate(pagination_arry(@count_page), {previous_label: "«", next_label: "»", :class => "navigation", :style => "margin-left: 24px;height: 32px;"})
-  #vitrina_inn.clearfix
-    - @find_posts.each do |post|
-      = render "home/item", {post: post}
-
-  - if @count_page > 0 || params[:page].present?
-    = will_paginate(pagination_arry(@count_page), {previous_label: "«", next_label: "»", :class => "navigation"})
+= render "home/content_page_items", {find_posts: @find_posts, curr_title: curr_title}
 
 

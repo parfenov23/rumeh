@@ -74,7 +74,7 @@ html, body{
 }
 
 h1#blog_title {
-  font-size: 48px; 
+  font-size: 48px;
 }
 
 body {
@@ -125,13 +125,13 @@ a img {
 	background: none;
   }  /* Gets rid of IE's blue borders  */
 
-  img { 
-   vertical-align: middle;	
-   border:none; 
+  img {
+   vertical-align: middle;
+   border:none;
  }
 
  a {
-   outline: none; 
+   outline: none;
    font-weight: bold;
    color: #4b494a;
    text-decoration: none;
@@ -363,7 +363,7 @@ a img {
 }
 .nivo-main-image {
 	display: block !important;
-	position: relative !important; 
+	position: relative !important;
 	width: 100% !important;
 }
 
@@ -379,8 +379,8 @@ a img {
 	margin:0;
 	z-index:6;
 	display:none;
-	background:white; 
-	filter:alpha(opacity=0); 
+	background:white;
+	filter:alpha(opacity=0);
 	opacity:0;
 }
 
@@ -461,7 +461,7 @@ a img {
 	display:block;
 	text-indent:0;
 	font-family:'FontAwesome';
-	font-size:33px;	
+	font-size:33px;
 	color:#ffffff;
 }
 
@@ -475,12 +475,12 @@ a img {
 	display:block;
 	text-indent:0;
 	font-family:'FontAwesome';
-	font-size:33px;	
+	font-size:33px;
 	color:#ffffff;
 }
 
 #rotator_cont  a.nivo-nextNav:hover:before,
-#rotator_cont  a.nivo-prevNav:hover:before { 
+#rotator_cont  a.nivo-prevNav:hover:before {
 	color:#cd4c2f;
 }
 
@@ -587,7 +587,7 @@ a img {
 
 #mobilelink li {
 	padding: 3px 0 3px 0;
-	white-space:nowrap; 
+	white-space:nowrap;
 }
 
 #mobilelink li a {
@@ -681,6 +681,7 @@ a img {
 	height: 11px;
 	width: 11px;
 	background: url(images/sf-menu-marker.png) center top no-repeat;
+	filter: brightness(0) invert(1);
 }
 
 .desktop #menu-custom li.menu-item-has-children > a:hover:after,
@@ -1284,7 +1285,7 @@ ul.price_categories {
 
 #sidebar > li  span.grower {
 	position: absolute;
-	right: 0px; 
+	right: 0px;
 	top: 0px;
 	color: #3f3c3d;
 	font-size: 18px;
@@ -1460,7 +1461,7 @@ span.grower:before  {
 
 .slider_rotator .slider_rotator_inn {
   background-color: white;
-  padding: 20px 15px;
+  padding: 13px 15px;
   box-sizing: border-box;
   border: 1px solid #c7c7c7;
   position: relative;
@@ -1614,6 +1615,15 @@ span.grower:before  {
 	text-transform: none;
 	font-size: 13px;
 	color: #fe8300;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	word-break: break-word;
+	margin-bottom: 8px;
 }
 
 #item_rotator a#item_title:hover {
@@ -1628,7 +1638,6 @@ span.grower:before  {
 	display: block;
 	position: relative;
 	float: left;
-	margin-bottom: 10px;
 }
 
 #item_rotator .img a  {
@@ -1769,7 +1778,7 @@ span.last_arrow {
 
 .navigation {
 	float: right;
-  border-left: 1px solid #cccccc; 
+  border-left: 1px solid #cccccc;
 }
 /*
 .navigation a:first-child {
@@ -1807,7 +1816,7 @@ span.last_arrow {
 	color: #333333;
 	border-left: none;
 	float: left;
-}	
+}
 
 /*COMMENT-------------------------------------- */
 
@@ -1866,7 +1875,7 @@ span.last_arrow {
 }
 
 span.fn,
-span.fn a { 
+span.fn a {
 	font-size: 13px;
 	color: #353535;
 	text-decoration: none;
@@ -1878,20 +1887,20 @@ span.fn a:hover {
 	text-decoration: none;
 }
 
-.reply-container { 
+.reply-container {
 	float:right;
 }
 
 .reply-container a {
 	padding-left: 14px;
 	padding-right: 8px;
-	color: #353535; 
+	color: #353535;
 	text-shadow: 1px 1px 1px #FFFFFF;
 }
 
 .reply-container a:hover {
 	text-decoration: none;
-	color: #fe8300; 
+	color: #fe8300;
 }
 
 .comment ul.children {
@@ -1899,11 +1908,11 @@ span.fn a:hover {
 }
 
 #commentform textarea#comment {
-	width: 600px; 
-} 
+	width: 600px;
+}
 
 #commentform input[type=text] {
-	width: 38%; 
+	width: 38%;
 }
 
 #commentform input,
@@ -1943,15 +1952,15 @@ span.fn a:hover {
 	display: none;
 }
 
-li.comment #respond textarea { 
+li.comment #respond textarea {
 	width: 91% !important;
 }
 
-li.comment #respond input[type=text] { 
+li.comment #respond input[type=text] {
 	width: 48% !important;
 }
 
-h3#reply-title { 
+h3#reply-title {
 	font-size: 18px;
 	color: #353535;
 	text-decoration: none;
@@ -1989,7 +1998,7 @@ h3#reply-title {
 }
 
 #desc ul li {
-	list-style: disc inside; 
+	list-style: disc inside;
 }
 
 #desc blockquote {
@@ -2004,7 +2013,7 @@ h3#reply-title {
 }
 
 #desc ol li {
-	list-style: decimal inside; 
+	list-style: decimal inside;
 }
 
 #desc h1,
@@ -2012,7 +2021,7 @@ h3#reply-title {
 #desc h3 {
 	margin-bottom:5px;
 	color: #333;
-} 
+}
 
 #desc p {
 	margin-bottom:10px;
@@ -2130,78 +2139,78 @@ h3#reply-title {
 	.logo {
 		margin-bottom: 10px;
 	}
-	
+
 	#cell {
 		display: none;
 	}
-	
+
 	/*CAT_VIRINA-------------------------------------*/
-	
+
 	#cat_vitrina li img {
 		float: none;
 		margin: 0px auto 10px;
 	}
-	
+
 	/*SIDEBAR---------------------------------------- */
-	
+
 	#sidebar {
 		width: 100%;
 		margin-bottom: 30px;
 	}
-	
+
 	#sidebar > li {
 		margin: 0 0 10px;
 	}
-	
+
 	#sidebar h3 {
 		margin-bottom: 0px;
 	}
-	
+
 	#sidebar > li > ul,
 	#sidebar > li > div {
 		padding: 10px 0px;
 	}
-	
+
 	#wp-calendar {
 		max-width: 320px;
 		margin: 0 auto;
 	}
-	
+
 	.no_title {
 		display: none;
 	}
-	
+
 	/*SIDEBAR-SLIDER---------------------------------------- */
-	
+
 	#rotator_sidebar {
 		width: 263px;
 		margin: 0 auto;
 	}
-	
+
 	.slider_sidebar_wrapp {
 		margin-bottom: 20px;
 	}
-	
+
 	/*MAIN-MENU-------------------------------------*/
-	
+
 	#menu-wrap-wide {
 		background: none;
 		margin-bottom: 14px;
 	}
-	
+
 	#menu-wrap.desktop {
 		display: none;
 	}
-	
+
 	#menu-wrap {
 		position: relative;
 	}
-	
+
 	#menu-wrap * {
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 	}
-	
+
 	#menu-trigger {
 		height: 55px;
 		line-height: 55px;
@@ -2224,7 +2233,7 @@ h3#reply-title {
 		right: 14px;
 		font-family: 'FontAwesome';
 	}
-	
+
 	.mobile #menu-custom {
 		display: none;
 		margin: 0;
@@ -2236,26 +2245,26 @@ h3#reply-title {
 		z-index: 1;
 		background-color: #f9f9f9;
 	}
-	
+
 	#menu-custom ul.menu-mobile-2 {
 		display: none;
 	}
-	
+
 	#menu-custom li {
 		display: block;
 		position: relative;
 	}
-	
+
 	#menu-custom > li {
 		color: #3f3c3d;
 		border-bottom: 1px solid #c7c7c7;
 	}
-	
+
 	#menu-custom > li:hover {
 		color: #fff;
 		background-color: #898787;
 	}
-	
+
 	#menu-custom  > li > a {
 		display: block;
 		float: none;
@@ -2265,20 +2274,20 @@ h3#reply-title {
 		color: #3f3c3d;
 		text-transform: capitalize;
 	}
-	
+
 	#menu-custom > li > a:hover {
 		color: #fff;
 	}
-	
+
 	#menu-custom ul {
 		background: #302c2d;
 		padding: 10px 20px;
 	}
-	
+
 	#menu-custom ul li {
 		padding: 3px 0 3px 0;
 	}
-	
+
 	#menu-custom ul a {
 		background: #302c2d;
 		padding: 10px 20px;
@@ -2288,16 +2297,16 @@ h3#reply-title {
 		font-size: 12px;
 		background: url(images/menu-phone-1.gif) no-repeat left 13px;
 	}
-	
+
 	#menu-custom ul a:hover {
 		color: #fec301;
 	}
-	
+
 	#menu-custom ul .open-mobile-2 {
 		right: 0px;
 		color: #fff;
 	}
-	
+
 	.open-mobile-2 {
 		display: block;
 		font-size: 15px;
@@ -2311,38 +2320,38 @@ h3#reply-title {
 		vertical-align: middle;
 		color: #3f3c3d;
 	}
-	
+
 	.open-mobile-2:hover {
 		cursor: pointer;
 	}
-	
+
 	.open-mobile-2:hover > a {
 		background: #898787;
 	}
-} 
+}
 
 @media only screen and (max-width:767px){
 	.logo img {
 		width: 280px;
 	}
-	
+
 	#banner_center  {
 		display: none;
 	}
-	
+
 	#cart_box  {
 		clear: both;
 		margin-top: 0px;
 		float: left !important;
 		margin-left: 0px;
 	}
-	
+
 	#header_wrapp  {
 		padding-top: 0px;
 	}
-	
+
 	/*CAT_VIRINA-------------------------------------*/
-	
+
 	#cat_vitrina  {
 		margin-left: 0px;
 		overflow: hidden;
@@ -2366,20 +2375,20 @@ h3#reply-title {
 		float: right;
 		margin-left: 10px;
 	}
-	
+
 	/*FOOTER---------------------------------------- */
-	
+
 	#footer_menu {
 		display: none;
 	}
-	
+
 	#footer_widget h3 {
 		border-bottom: 1px solid #fff;
 		padding-bottom: 11px;
 	}
 
 	/*VITRINA---------------------------------------- */
-	
+
 	#main-content.narrow #vitrina_inn #item,
 	#main-content.fullwidth #vitrina_inn #item {
 		float: left;
@@ -2388,19 +2397,19 @@ h3#reply-title {
 		padding: 0px;
 		margin-bottom: 30px;
 	}
-	
+
 	#main-content.fullwidth,
 	#main-content.narrow {
 		width:100%;
-		position:relative;	
+		position:relative;
 		margin-bottom: 30px;
 	}
-	
+
 	#main-content #vitrina_inn .item_inn {
 		height: auto !important;
 		min-height: 260px;
 	}
-	
+
 	#vitrina_inn .img {
 		float: left;
 		padding: 20px 15px;
@@ -2422,69 +2431,69 @@ h3#reply-title {
 		overflow: hidden;
 		display: block;
 	}
-	
+
 	#vitrina_inn a#item_title {
 		float: left;
 		padding-left: 230px;
 	}
-	
+
 	.vitrina_text {
 		float: left;
 		padding-left: 230px;
 	}
-	
+
 	.price_box {
 		float: left;
 		padding-left: 230px;
 		padding-top: 20px;
 	}
-	
+
 	#vitrina_inn .post-edit-link {
 		position: absolute;
 		bottom: 0px;
 		right: 15px;
 	}
-	
+
 	#vitrina > form,
 	form#order {
 		display: none;
 	}
-	
+
 	/*COMMENT-------------------------------------- */
-	
+
 	#commentform textarea#comment {
-		width: 100%; 
-	} 
-	
+		width: 100%;
+	}
+
 	.comment ul.children {
 		padding-left: 0px;
 	}
-	
+
 	/*PRICE---------------------------------------- */
-	
+
 	#main-content .table_price tr td.img_col {
 		display: none;
 	}
-	
+
 	#main-content .table_price .wpshop_bag {
 		min-width: 220px !important;
 	}
-	
+
 	#main-content .table_price .wpshop_bag .wpshop_caption,
 	#main-content .table_price .wpshop_bag .wpshop_count,
 	.wpshop_table_td .wpshop_bag .wpshop_count,
 	.wpshop_table .wpshop_bag .wpshop_caption {
 		display:none;
 	}
-	
+
 	#main-content .table_price td.wpshop_price {
 		min-width: 30px !important;
 	}
-	
+
 	#price > form  {
 		display: none;
 	}
-	
+
 	/*ROTATOR---------------------------------------- */
 
 	.item_rotator_inn{
@@ -2502,7 +2511,7 @@ h3#reply-title {
 	#item_rotator .price_box  {
 		display: none !important;
 	}
-	
+
 	/*SINGLE-------------------------------------- */
 
 	#galery_wrapp {
@@ -2511,7 +2520,7 @@ h3#reply-title {
 		margin: 0 auto 20px;
 		overflow: hidden;
 	}
-	
+
 	.single_img .img  {
 		border: 1px solid #cccccc;
 		margin-bottom: 10px;
@@ -2520,11 +2529,11 @@ h3#reply-title {
 		margin: 0 auto 20px;
 		width:240px;
 	}
-	
+
 	.container_img{
 		width: 345px;
 	}
-	
+
 	.thumb_img  img{
 		width: 79px;
 	}
@@ -2534,7 +2543,7 @@ h3#reply-title {
 		margin-bottom: 15px;
 		position: relative;
 	}
-	
+
 	.thumb_img {
 		float:left;
 		border: 1px solid #e0e0e1;
@@ -2542,69 +2551,69 @@ h3#reply-title {
 		margin-bottom: 7px;
 		overflow: hidden;
 		width:79px;
-		height:79px; 
+		height:79px;
 		background-color: #fff;
 	}
-	
+
 	.thumb_img.four_img {
 		margin-right: 0px;
 	}
-	
+
 	h2.page_title {
 		clear: both;
 		width: 100%;
 	}
-	
+
 	/*SLIDER---------------------------------------- */
-	
+
 	#slideshow .nivo-directionNav a {
 		display: none;
 	}
-	
+
 	/*MENU-TOP---------------------------------------- */
-	
+
 	#menu-wrap-top-wide {
 		background: none;
 	}
-	
+
 	/*BRAND-------------------------------------*/
 	#footer_brand li span {
 		font-size: 12px;
 	}
-	
+
 }
 
 @media only screen and (max-width: 480px) {
 	.logo img{
 		width: 200px;
 	}
-	
+
 	/*VITRINA---------------------------------------- */
-	
+
 	#vitrina_inn .img {
 		position: relative;
 		margin-bottom: 10px;
 		margin-right: 20px;
 	}
-	
+
 	#vitrina_inn a#item_title,
 	.vitrina_text {
 		float: none;
 		padding-left: 0px;
 	}
-	
+
 	.price_box {
 		float: left;
 		padding-left: 0px;
 		padding-top: 0px;
 		clear: both;
 	}
-	
+
 	#rotator_cont,
 	.similar_text {
 		display: none;
 	}
-	
+
 	#vitrina_inn .img img {
 		width: 90px !important;
 	}
@@ -2613,19 +2622,19 @@ h3#reply-title {
 		width: 90px;
 		height: 90px;
 	}
-	
+
 	#vitrina_inn a#item_title {
 		padding-left: 0px;
 	}
-	
+
 	.vitrina_text {
 		padding-left: 0px;
 	}
-	
+
 	.price_box {
 		padding-left: 0px;
 	}
-	
+
 	#main-content #vitrina_inn .item_inn {
 		min-height: 240px;
 		position: relative;
@@ -2633,15 +2642,15 @@ h3#reply-title {
 	}
 
 	/*PRICE---------------------------------------- */
-	
+
 	#main-content .table_price tr td.price_col {
 		display: none;
 	}
-	
+
 	td.wpshop_table_td {
 		display: none;
 	}
-	
+
 	/*SINGLE-------------------------------------- */
 
 	#galery_wrapp {
@@ -2649,11 +2658,11 @@ h3#reply-title {
 		width:290px;
 		margin: 0 auto 20px;
 	}
-	
+
 	.container_img {
 		width: 288px;
 	}
-	
+
 	.thumb_img img {
 		width: 50px;
 	}
@@ -2671,62 +2680,62 @@ h3#reply-title {
 		margin-bottom: 7px;
 		overflow: hidden;
 		width:50px;
-		height:50px; 
+		height:50px;
 		background-color: #fff;
 	}
-	
+
 	.thumb_img.four_img {
 		margin-right: 7px;
 	}
-	
+
 	h2.page_title {
 		clear: both;
 		width: 100%;
 	}
-	
+
 	/*BRAND-------------------------------------*/
-	
+
 	#footer_brand {
 		display: none;
 	}
-	
+
 	/*CAT_VIRINA-------------------------------------*/
-	
+
 	#cat_vitrina li img {
 		float: none;
 		margin: 0 auto 10px;
 	}
-	
+
 }
 
 @media only screen and (min-width:768px){
 	.container {
 		max-width: 720px;
 	}
-	
+
 	.menu_top {
 		display: block !important;
 	}
-	
+
 	.mobile-link-top  {
 		display: none !important;
 	}
-	
-	
+
+
 	.banner_item {
 		width: 174px;
 		margin-left: 8px;
 	}
-	
+
 	#main-content.fullwidth,
 	#main-content.narrow {
 		width:100%;
-		position:relative;	
+		position:relative;
 		margin-bottom: 30px;
 	}
-	
+
 	/*FOOTER---------------------------------------- */
-	
+
 	#footer_widget > li {
 		box-sizing: border-box;
 		-moz-box-sizing: border-box;
@@ -2735,14 +2744,14 @@ h3#reply-title {
 		width: 23%;
 		border-right: 1px solid #454242;
 	}
-	
+
 	#footer_widget > li.last {
 		margin-right: 0px;
 		border-right: none;
 	}
-	
+
 	/*VITRINA---------------------------------------- */
-	
+
 	#main-content.fullwidth #vitrina_inn #item ,
 	#main-content.narrow #vitrina_inn #item {
 		float: left;
@@ -2757,7 +2766,7 @@ h3#reply-title {
 	#vitrina_inn {
 		margin-left: -15px;
 		margin-right: -15px;
-		box-sizing: border-box;	
+		box-sizing: border-box;
 		-moz-box-sizing: border-box;
 	}
 
@@ -2800,8 +2809,8 @@ h3#reply-title {
 		padding: 0 15px;
 		box-sizing: border-box;
 		-moz-box-sizing: border-box;
-	} 
-	
+	}
+
 	#vitrina_inn .wpshop_bag {
 		clear: both;
 	}
@@ -2811,7 +2820,7 @@ h3#reply-title {
 		top: 0px;
 		right: 15px;
 	}
-	
+
 	/*SINGLE-------------------------------------- */
 
 	#galery_wrapp {
@@ -2821,7 +2830,7 @@ h3#reply-title {
 		position: relative;
 		width:347px;
 	}
-	
+
 	.single_img > .img  {
 		border: 1px solid #cccccc;
 		margin-bottom: 10px;
@@ -2829,16 +2838,16 @@ h3#reply-title {
 		position: relative;
 		float: left;
 	}
-	
+
 	.single_img #desc {
 		float: right;
 		width:445px;
 	}
-	
+
 	.container_img {
 		width: 345px;
 	}
-	
+
 	.thumb_img {
 		width: 79px;
 	}
@@ -2861,7 +2870,7 @@ h3#reply-title {
     margin-bottom: 7px;
     overflow: hidden;
     width:79px;
-    height:79px; 
+    height:79px;
     background-color: #fff;
   }
 
@@ -2875,33 +2884,33 @@ h3#reply-title {
 	.container {
 		max-width: 940px;
 	}
-	
+
 	#slideshow_wrapp.narrow {
 		width: 75%;
 	}
-	
+
 	.banner_item {
 		width: 213px;
 		margin-left: 29px;
 	}
-	
+
 	#main-content.fullwidth {
 		width:100%;
-		position:relative;	
+		position:relative;
 		float:left;
 	}
-	
+
 	#main-content.narrow {
 		width:75%;
-		position:relative;	
+		position:relative;
 	}
-	
+
 	#sidebar {
 		width: 25%;
 		box-sizing: border-box;
 		-moz-box-sizing: border-box;
 	}
-/*	
+/*
 	#sidebar.absolut_slider {
 		position: absolute;
 		top: 0px;
@@ -2963,12 +2972,12 @@ h3#reply-title {
 		padding-right: 0;
 		max-width: 1170px;
 	}
-	
+
 	.banner_item {
 		width: 270px;
 		margin-left: 30px;
 	}
-	
+
 	/*SINGLE-------------------------------------- */
 
 	/* .galery #desc {
@@ -2989,7 +2998,7 @@ h3#reply-title {
     margin-left: 10px;
   }
 
-}	
+}
 
 /*yandex dostavka*/
 
@@ -3010,7 +3019,7 @@ h3#reply-title {
 	#yandex_dostavka_form_container input[type=text] {
 		width: 100%;
 	}
-	
+
 	#yandex_dostavka_form_container .yd-widget-modal {
 		top:10px;
 		left: 0 ;
@@ -3163,7 +3172,7 @@ body #wpshop-butt-2 .wpshop-button1,
 body #wpshop-butt-2 .wpshop-button2,
 body #wpshop_reg_user_form input[type=submit]  {
 	padding: 5px 11px 8px 11px !important;
-	cursor: pointer !important; 
+	cursor: pointer !important;
 	font-family: Arial, Helvetica, sans-serif !important;
 	background: #383536 !important;
 	font-size: 13px !important;
@@ -3247,7 +3256,7 @@ input.wpshop-button {
 	display: none !important ;
 }
 
-.recycle_bin td.rb_type{ 
+.recycle_bin td.rb_type{
 	display: none !important ;
 }
 
@@ -3294,7 +3303,7 @@ input.wpshop-button {
 		width: 400px !important;
 		height: auto !important;
 	}
-	
+
 	.wpshop-button,
 	#wpshop-butt-1 .wpshop-button1,
 	#wpshop-butt-1 .wpshop-button2,
@@ -3319,16 +3328,16 @@ input.wpshop-button {
 	.recycle_bin tfoot {
 		display: table-header-group !important ;
 	}
-	
+
 	.recycle_bin table {
 		display: table !important ;
 	}
-	
+
 	.recycle_bin tr {
 		display: table-row ;
 	}
 
-	.recycle_bin td.rb_type{ 
+	.recycle_bin td.rb_type{
 		display: none !important ;
 	}
 
@@ -3336,36 +3345,36 @@ input.wpshop-button {
 	.recycle_bin th {
 		display: table-cell !important ;
 	}
-	
-	.recycle_bin td.rb_type{ 
+
+	.recycle_bin td.rb_type{
 		display: table-cell !important ;
 	}
-	
+
 	.recycle_bin tr.all_price  td:first-child {
 		text-align: right !important;
 	}
-	
+
 	.recycle_bin td.rb_img a {
 		width: 100px;
 		display: block;
 		max-width: 100px;
 		margin: 0px;
 	}
-	
+
 	.recycle_bin td.rb_num {
 		min-width: 70px;
 	}
-	
+
 	.recycle_bin td.rb_name {
 		text-align: left;
 	}
-	
+
 	.recycle_bin td.rb_delete {
 		position: relative;
 		top: auto;
 		right: auto;
 	}
-	
+
 	.recycle_bin tr.discount_row td:first-child {
 		text-align: right !important;
 	}

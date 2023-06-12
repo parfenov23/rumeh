@@ -14,18 +14,6 @@ class DekoncApi
     arr_posts.select{|ap| ap[:type_of_retail].present? && ap[:type_of_retail] == "1"}
   end
 
-  def self.find_post(id)
-    post = Post.find(id)
-    curr_desc = {}
-    post.post_metas.map{|pm| curr_desc[pm.meta_key] = pm.meta_value}
-    merge_params_post(post, curr_desc)
-  end
-
-  def self.find_page(id)
-    page = send_get("wp/v2/pages/#{id}")
-    {id: page["id"], title: page["title"]["rendered"], content: page["content"]["rendered"]}
-  end
-
   def self.merge_params_post(post, curr_desc)
     # binding.pry
     curr_desc["Thumbnail"] = curr_desc["Thumbnail"].present? ? curr_desc["Thumbnail"] : "http://dekonc.ru/wp-content/themes/wp-shop-22/images/no_foto.png"
@@ -39,7 +27,7 @@ class DekoncApi
       status: post["status"],
       type_of_goods: curr_desc["type_of_goods"],
       type_of_retail: curr_desc["type_of_ritail"],
-      categories: post["categories"],
+      categories: post["categories"] || curr_desc["categories"],
       tags: post["tags"],
       img_url: curr_desc["Thumbnail"],
       img_url_2: curr_desc["Thumbnail1"],
@@ -55,7 +43,16 @@ class DekoncApi
     param
   end
 
-  def self.all_desc_posts
+  def self.find_post(id)
+    post = Post.with_categories.find(id)
+    curr_desc = {}
+    post.post_metas.map{|pm| curr_desc[pm.meta_key] = pm.meta_value}
+    curr_desc["categories"] = post.categories
+    merge_params_post(post, curr_desc)
+  end
+
+  def self.all_desc_posts(ids: nil)
+
     send_get("rest-routes/v2/postAdmin")
   end
 
@@ -66,44 +63,47 @@ class DekoncApi
   end
 
   def self.all_categories
-    all_categories = send_get("wp/v2/categories?per_page=100")
-    search_childs(all_categories, 0)
-  end
-
-  def self.find_category(id)
-    category = send_get("wp/v2/categories/#{id}")
-    {id: category["id"], count: category["count"], name: category["name"], parent: category["parent"].to_i}
-  end
-
-  def self.array_category_in_child(child_id)
-    array_categories = [child_id]
-    loop do
-      if child_id != 0
-        child_id = find_category(child_id)[:parent]
-        array_categories << child_id if child_id != 0
-      else
-        break
-      end
-    end
-    array_categories.reverse
-  end
-
-  def self.title_current_all_categories(category_id)
-    array_category_in_child(category_id).map{|category_id| find_category(category_id)[:name]}.join(" ").mb_chars.downcase.to_s.mb_chars.capitalize.to_s 
-
+    all_categories = TermTaxonomy.joins(:term).includes(:term).where(te0term_taxonomy: {taxonomy: "category"}).where.not(te0terms: {term_order: 0})
+    result = search_childs(all_categories, 0)
+    result.sort_by{|f| all_categories_position(f[:id])}
   end
 
   def self.search_childs(all_categories, id)
-    all_categories.select{|ac| ac["parent"] == id}.map{|find_cat| 
-      {id: find_cat["id"], count: find_cat["count"], name: find_cat["name"], childs: search_childs(all_categories, find_cat["id"])}
+    all_categories.select{|ac| ac["parent"] == id}.map{|category|
+      {id: category.id, count: category.count, name: category.term.name, childs: search_childs(all_categories, category.id)}
     }
+  end
+
+  def self.all_categories_position(id)
+    {
+      259 => 1,
+      322 => 2,
+      262 => 3,
+      499 => 4
+    }[id]
+  end
+
+  def self.find_category(id)
+    # category = send_get("wp/v2/categories/#{id}")
+    category = TermTaxonomy.joins(:term).includes(:term).find(id)
+    {id: category.id, count: category.count, name: category.term.name, parent: category.parent.to_i}
+  end
+
+  def self.title_current_all_categories(category_id)
+    sql = "select (select name from te0terms where term_id = t4.term_id limit 1) as n4, (select name from te0terms where term_id = t3.term_id limit 1) as n3, (select name from te0terms where term_id = t2.term_id limit 1) as n2, (select name from te0terms where term_id = t1.term_id limit 1) as n1 from te0term_taxonomy as t1
+      left join te0term_taxonomy as t2 on t2.term_taxonomy_id = t1.parent
+      left join te0term_taxonomy as t3 on t3.term_taxonomy_id = t2.parent
+      left join te0term_taxonomy as t4 on t4.term_taxonomy_id = t3.parent
+      where t1.term_taxonomy_id = #{category_id}"
+    result = ActiveRecord::Base.connection.execute(sql).first
+    result.join(" ").mb_chars.downcase.to_s.mb_chars.capitalize.to_s.strip
   end
 
   def self.usd_rub
     url = "http://www.cbr-xml-daily.ru/daily_json.js"
     Rails.cache.fetch(url, expires_in: 20.minute) do
       curr_val = send_get(url, '')["Valute"]["USD"]["Value"].to_f
-      setting_val = get_settings("wpshop.usd_retail").to_f
+      setting_val = Option.find_by_option_name("wpshop.usd_retail").option_value.to_f
       curr_val < setting_val ? setting_val : curr_val
     end
   end
@@ -176,13 +176,14 @@ class DekoncApi
       })
   end
 
-  def self.client_sber
-    token = "30lkuhjq9gdpbplqln9embo7et"
-    SBRF::Acquiring::Client.new(token: token, test: true)
-  end
-
-  def self.find_payment(order_id)
-    client_sber.get_order_status_extended(order_id: order_id)
-  end
+  #
+  # def self.client_sber
+  #   token = "30lkuhjq9gdpbplqln9embo7et"
+  #   SBRF::Acquiring::Client.new(token: token, test: true)
+  # end
+  #
+  # def self.find_payment(order_id)
+  #   client_sber.get_order_status_extended(order_id: order_id)
+  # end
 
 end

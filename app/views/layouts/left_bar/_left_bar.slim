@@ -1,16 +1,18 @@
-#sidebar.floatLeft.pright.absolut_slider
-  = render "layouts/left_bar/search"
-  li.no_title
-    .menu-menyu-dlya-sajdbara-obshhee-container style="" 
-      ul#menu-menyu-dlya-sajdbara-obshhee.menu
-        - @categories.each do |category|
-          - if category[:id] != 1
-            li#menu-item-3959.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-3959.parent_dir class=(category[:childs].present? ? "menu-item-has-children" : "")
-              a href="/category/#{category[:id]}"  = category[:name]
-              - if category[:childs].present?
-                span.grower
-                = render "layouts/left_bar/left_bar_sub", {sub_categories: category[:childs]}
+- dependencies = [@categories, params[:color], params[:vors], params[:naznachenie], params[:dlina_vorsa]]
+- cache dependencies do
+  #sidebar.floatLeft.pright.absolut_slider
+    = render "layouts/left_bar/search"
+    li.no_title
+      .menu-menyu-dlya-sajdbara-obshhee-container style=""
+        ul#menu-menyu-dlya-sajdbara-obshhee.menu
+          - @categories.each do |category|
+            - if category[:id] != 1
+              li#menu-item-3959.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-3959.parent_dir class=(category[:childs].present? ? "menu-item-has-children" : "")
+                a href="/category/#{category[:id]}"  = category[:name]
+                - if category[:childs].present?
+                  span.grower
+                  = render "layouts/left_bar/left_bar_sub", {sub_categories: category[:childs]}
 
-  = render "layouts/left_bar/left_filter"
-  = render "layouts/left_bar/slider"
+    = render "layouts/left_bar/left_filter"
+    = render "layouts/left_bar/slider"
 /! .container

@@ -231,14 +231,14 @@ $(document).ready(function(){
   })
 
   create_slider_ui(
-    $(".sf-meta-range-slider[data-sf-field-name='_sfm_dlina_vorsa']"), 
-    $(".sf-input-range-number.sf-range-min.sf-input-number[name='_sfm_dlina_vorsa[]']"), 
-    $(".sf-input-range-number.sf-range-max.sf-input-number[name='_sfm_dlina_vorsa[]']"), 120, 1);
+    $(".sf-meta-range-slider[data-sf-field-name='dlina_vorsa']"),
+    $(".sf-input-range-number.sf-range-min.sf-input-number[name='dlina_vorsa[]']"),
+    $(".sf-input-range-number.sf-range-max.sf-input-number[name='dlina_vorsa[]']"), 120, 1);
 
   create_slider_ui(
-    $(".sf-meta-range-slider[data-sf-field-name='_sfm_cost_1']"), 
-    $(".sf-input-range-number.sf-range-min.sf-input-number[name='_sfm_cost_1[]']"), 
-    $(".sf-input-range-number.sf-range-max.sf-input-number[name='_sfm_cost_1[]']"), 1600, 10);
+    $(".sf-meta-range-slider[data-sf-field-name='cost_1']"),
+    $(".sf-input-range-number.sf-range-min.sf-input-number[name='cost_1[]']"),
+    $(".sf-input-range-number.sf-range-max.sf-input-number[name='cost_1[]']"), 1600, 10);
 
 
   $('.grower').click(function() {
@@ -333,6 +333,25 @@ var showBlockFixedCart = function(){
     }
   });
 }
+
+var after_load_img = function(){
+  $('img[data-src]').each(function(n, img){
+    img.setAttribute('src', img.getAttribute('data-src'));
+    img.onload = function(){
+      img.removeAttribute('data-src');
+    };
+  });
+}
+
+$(document).ready(function(){
+  $('img').on('error', function(){
+    $(this).attr('src', '/not_found.png');
+  });
+  after_load_img();
+  $(document).ajaxSuccess(function(event, request, settings){
+    after_load_img();
+  });
+})
 
 
 $(window).load(function() {

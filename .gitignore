@@ -9,7 +9,7 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
-/db/*.sqlite3-*
+/db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -17,19 +17,22 @@
 !/log/.keep
 !/tmp/.keep
 
-# Ignore pidfiles, but keep the directory.
-/tmp/pids/*
-!/tmp/pids/
-!/tmp/pids/.keep
+# Ignore Byebug command history file.
+.byebug_history
+.env
 
-# Ignore uploaded files in development.
-/storage/*
-!/storage/.keep
-/tmp/storage/*
-!/tmp/storage/
-!/tmp/storage/.keep
-
-/public/assets
-
-# Ignore master key for decrypting credentials and more.
-/config/master.key
+public/static/*
+public/system/*
+public/uploads/*
+db/schema.rb
+.idea/*
+test/reports/*
+.rake_tasks~
+coverage/*
+Gemfile.lock
+logfile
+dump.rdb
+public/robots.txt
+public/sitemap.xml
+.DS_Store
+app/assets/javascripts/routes.js

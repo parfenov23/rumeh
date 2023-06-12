@@ -1,0 +1,15 @@
+#main-content.narrow.floatRight
+  h1.page_title = curr_title
+
+  .lineSort style="display: flex;justify-content: space-between;"
+    = render "home/sort_posts"
+    / button type="submit" Показать
+
+
+    = will_paginate(@find_posts, {previous_label: "«", next_label: "»", :class => "navigation", :style => "height: 32px;"})
+  #vitrina_inn.clearfix
+    - find_posts.each do |post|
+      = render "home/item", {post: post}
+        /! #item
+
+  = will_paginate(@find_posts, {previous_label: "«", next_label: "»", :class => "navigation"})

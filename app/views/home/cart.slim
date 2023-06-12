@@ -16,23 +16,24 @@
               th.delete &nbsp;
           tbody
             - sum_cart_items = 0
-            - session[:items].each do |item|
-              - post = DekoncApi.find_post(item["id"])
+            - @all_posts.each do |post|
+              - retail = post_retail_price(post)
+              - item = session[:items].select{|i| i["id"].to_s == post.id.to_s}.last
               tr.rb_item valign="top" 
                 td.rb_img
-                  a href="/item/#{post[:id]}"
-                    img src=post[:img_url]
+                  a href="/item/#{post.id}"
+                    img data-src=get_post_meta_val(post, "Thumbnail")
                 td.rb_name
-                  a href="/item/#{post[:id]}" = post[:title]
+                  a href="/item/#{post.id}" = post.post_title
                 td.rb_type руб./пог.м&nbsp;
-                td.rb_cost = post[:retail]
+                td.rb_cost = retail
                 td.rb_num
-                  span.minus.minus_0.js_addItemToCart data-id=post[:id] data-title=post[:title] data-count="-1" data-price=post[:retail]  −
+                  span.minus.minus_0.js_addItemToCart data-id=post.id data-title=post.post_title data-count="-1" data-price=retail  −
                   input.input_0 maxlength="6" size="3" type="text" disabled=true value=item["count"]
-                  span.plus.plus_0.js_addItemToCart data-id=post[:id] data-title=post[:title] data-count="1" data-price=post[:retail] +
-                - sum_cart_items += post[:retail] * item["count"]
-                td.rb_total = round_num(post[:retail] * item["count"])
-                td.rb_delete.js_removeItemInCart data-id=post[:id]
+                  span.plus.plus_0.js_addItemToCart data-id=post.id data-title=post.post_title data-count="1" data-price=retail +
+                - sum_cart_items += retail * item["count"]
+                td.rb_total = round_num(retail * item["count"])
+                td.rb_delete.js_removeItemInCart data-id=post.id
                   span ×
           
 

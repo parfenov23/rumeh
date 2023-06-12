@@ -20,7 +20,7 @@
 
 #slideshow_wrapp.narrow.floatRight.bottom30.relat style=("display: block;") 
   #slideshow.nivoSlider
-    - DekoncApi.all_sliders.each do |slider|
-      - if slider[:img_url].present?
-        a href=slider[:slider_url]
-          img src=slider[:img_url]
+    - Post.find_by_slider("rumeh").each do |slider|
+      - if get_post_meta_val(slider, "Thumbnail").present?
+        a href=get_post_meta_val(slider, "slider_url")
+          img data-src=get_post_meta_val(slider, "Thumbnail")
