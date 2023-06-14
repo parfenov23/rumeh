@@ -23,4 +23,4 @@
     - Post.find_by_slider("rumeh").each do |slider|
       - if get_post_meta_val(slider, "Thumbnail").present?
         a href=get_post_meta_val(slider, "slider_url")
-          img data-src=get_post_meta_val(slider, "Thumbnail")
+          img src=get_post_meta_val(slider, "Thumbnail")

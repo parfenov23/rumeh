@@ -16,7 +16,7 @@
 //= require_tree ./vendor
 
 jQuery(function(){
-  $(".container_img").imagezoomsl({ 
+  $(".container_img").imagezoomsl({
     zoomrange: [1, 3],
     zoomstart: 1.5,
     innerzoom: true,
@@ -51,7 +51,7 @@ var addItemToCart = function (){
          input.val(curr_val);
          var parent_block = btn.closest(".rb_item");
          parent_block.find(".rb_total").text( parseFloat( parent_block.find(".rb_cost").text() ) * curr_val );
-         updateTotalCartPrice(); 
+         updateTotalCartPrice();
        }
      }
    },
@@ -123,7 +123,7 @@ var buttonFormSubmit = function(){
   var type = btn.data("type");
   var ajax_url = '/order_request'
   var end_url = "/cart"
-  if(type == "feedback"){ 
+  if(type == "feedback"){
     var ajax_url = '/send_feedback'
     var end_url = "/"
   }
@@ -203,9 +203,9 @@ $(document).ready(function(){
       $("#menu-custom").show();
     }
     $("#menu-custom").toggleClass("open_menu");
-    
-    
-    var block_child = $("#menu-custom .menu-item-has-children"); 
+
+
+    var block_child = $("#menu-custom .menu-item-has-children");
     if (!block_child.find(".open-mobile-2.icon-plus").length){
       block_child.append("<span class='open-mobile-2 icon-plus'></span>");
       $(document).on('click', '.open-mobile-2.icon-plus', function(){
@@ -288,7 +288,7 @@ $(document).ready(function(){
       email: {
         required: true,
         email: true
-      }, 
+      },
 
       phone: {
         required: true,
@@ -343,29 +343,27 @@ var after_load_img = function(){
   });
 }
 
-$(document).ready(function(){
+$(window).load(function() {
+
   $('img').on('error', function(){
     $(this).attr('src', '/not_found.png');
   });
+
   after_load_img();
-  $(document).ajaxSuccess(function(event, request, settings){
-    after_load_img();
-  });
-})
 
-
-$(window).load(function() {
   showBlockFixedCart();
   $('#slideshow').nivoSlider({
     effect: 'fade',
     animSpeed: 600,
     pauseTime: 4500,
     controlNav: false,
-    directionNav: true     
+    directionNav: true
   });
+
   if (($('#slideshow').length > 0)&&($("#banner_center").length == 0)) {
     $('#sidebar').addClass('absolut_slider');
-  } 
+  }
+
   $('#menu-wrap').css("display","block");
   $('#slideshow_wrapp').css("display","block");
   $("#galery_wrapp .thumb_img img").on('click', function(){
