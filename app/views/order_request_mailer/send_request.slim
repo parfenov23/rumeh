@@ -15,8 +15,8 @@ table style="border: 1px solid grey;width: 100%;"
   /! ряд с ячейками заголовков
   - all_sum = 0
   - @all_posts.each do |post|
-    - retail = post_retail_price(post)
-    - item = session[:items].select { |i| i["id"].to_s == post.id.to_s }.last
+    - retail = post.retail
+    - item = @items.select { |i| i["id"].to_s == post.id.to_s }.last
     tr
       td style="border: 1px solid grey;" = item['title']
       td style="border: 1px solid grey;" = retail
