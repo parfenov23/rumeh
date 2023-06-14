@@ -70,8 +70,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.yandex.ru",
     :port                 => 587,
-    :user_name            => "rumeh-order@yandex.ru",
-    :password             => "ert345Y#",
+    :user_name            => "rumeh.ru@yandex.ru",
+    :password             => "d0fc422c85d8776a",
     :authentication       => :plain,
     :enable_starttls_auto => true
   }
