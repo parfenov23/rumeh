@@ -1,5 +1,5 @@
 class DekoncApi
-  require "mechanize"
+  require "net_http_request"
 
   def self.all_categories
     all_categories = TermTaxonomy.joins(:term).includes(:term).where(te0term_taxonomy: {taxonomy: "category"}).where.not(te0terms: {term_order: 0})
@@ -39,21 +39,20 @@ class DekoncApi
   end
 
   def self.usd_rub
-    url = "http://www.cbr-xml-daily.ru/daily_json.js"
-    Rails.cache.fetch(url, expires_in: 20.minute) do
-      curr_val = send_get(url, '')["Valute"]["USD"]["Value"].to_f
-      setting_val = Option.find_by_option_name("wpshop.usd_retail").option_value.to_f
-      curr_val < setting_val ? setting_val : curr_val
-    end
+    result = NetHttpRequest.request("http://www.cbr.ru/scripts/XML_daily.asp", {
+      file_type: :xml,
+      cache: true,
+      cache_time: 20
+    })
+
+    curr_val = ((result.dig(:ValCurs, :Valute) || [{}]).find{|t| t[:CharCode] == "USD"} || {})[:Value].to_f
+    setting_val = Option.find_by_option_name("wpshop.usd_retail").option_value.to_f
+    curr_val < setting_val ? setting_val : curr_val
   end
 
   def self.send_get(url, curr_domain = default_url)
-    agent = Mechanize.new
-    time_hash = Rails.env.production? ? 5 : 0
     url = "#{curr_domain}#{url}"
-    Rails.cache.fetch(url, expires_in: time_hash.minute) do
-      JSON.parse(agent.get(url).body)
-    end 
+    NetHttpRequest.request(url, {cache: true, cache_time: 20})
   end
 
   def self.default_url
