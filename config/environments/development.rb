@@ -68,12 +68,12 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.yandex.ru",
-    :port                 => 587,
-    :user_name            => "rumeh.ru@yandex.ru",
-    :password             => "d0fc422c85d8776a",
-    :authentication       => :plain,
-    :enable_starttls_auto => true
+    :address              => 'smtp.yandex.ru',
+    :port                 => '587',
+    :enable_starttls_auto => true,
+    :user_name            => 'rumeh.ru@yandex.ru',
+    :password             => 'fwbqmnywlykprkqc',
+    :authentication       => :plain
   }
   # config.action_mailer.smtp_settings = {
   #   :address              => "smtp.yandex.ru",
