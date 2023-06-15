@@ -59,5 +59,22 @@ class DekoncApi
     "http://dekonc.ru/wp-json/"
   end
 
+  def self.send_mail(title, body, email_to: "rumeh.ru@yandex.ru")
+    Pony.mail(
+      :to => email_to,
+      :from => "rumeh.ru@yandex.ru",
+      :subject => title,
+      :html_body => body,
+      :via => :smtp,
+      :via_options => {
+        :address              => 'smtp.yandex.ru',
+        :port                 => '587',
+        :enable_starttls_auto => true,
+        :user_name            => 'rumeh.ru@yandex.ru',
+        :password             => 'atjlddekopfisqwd',
+        :authentication       => :plain
+      })
+  end
+
 
 end

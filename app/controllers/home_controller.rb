@@ -59,8 +59,23 @@ class HomeController < ApplicationController
 
   def order_request
     id = Time.now.to_i.to_s.last(6)
-    #OrderRequestMailer.send_request(session[:items], params, id).deliver
-    OrderRequestMailer.send_request(session[:items], params, id, params[:email], "Ваш заказ №#{id} принят в обработку.").deliver
+    items = session[:items]
+    items_ids = (items || []).map{|i| i["id"]}
+    all_posts = Post.present_retail.with_categories.where(id: items_ids)
+    body = render_to_string('home/mailer/_send_request', layout: false, locals: {
+      items: items,
+      curr_params: params,
+      order_id: id,
+      all_posts: all_posts
+    })
+
+    DekoncApi.send_mail("Новый заказ с сайта rumeh.ru №#{id}", body)
+    DekoncApi.send_mail("Ваш заказ №#{id} принят в обработку.", body, email_to: params[:email])
+    # OrderRequestMailer.send_request(session[:items], params, id).deliver
+    #
+    # OrderRequestMailer.send_request(session[:items], params, id, params[:email], "Ваш заказ №#{id} принят в обработку.").deliver
+
+
     session[:items] = []
     render json: {success: true}
   end

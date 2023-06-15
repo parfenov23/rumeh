@@ -1,0 +1,32 @@
+p = "Ваш заказ ID: #{order_id} уже обрабатывается. Ожидайте письма со счётом на оплату."
+p = "ФИО: #{curr_params[:last_name]}"
+p = "Способ доставки: #{curr_params[:deliver]}"
+p = "Email: #{curr_params[:email]}"
+p = "Телефон: #{curr_params[:phone]}"
+p ="Комментарий: #{curr_params[:comment]}"
+br
+br
+table style="border: 1px solid grey;width: 100%;"
+  tr
+    th style="border: 1px solid grey;" Наименование
+    th style="border: 1px solid grey;" Цена за шт
+    th style="border: 1px solid grey;" Кол-во
+    th style="border: 1px solid grey;" Сумма
+  /! ряд с ячейками заголовков
+  - all_sum = 0
+  - all_posts.each do |post|
+    - retail = post_retail_price(post)
+    - item = items.select { |i| i["id"].to_s == post.id.to_s }.last
+    tr
+      td style="border: 1px solid grey;" = item['title']
+      td style="border: 1px solid grey;" = retail
+      td style="border: 1px solid grey;" = item['count']
+      - sum = (retail * item['count'])
+      td style="border: 1px solid grey;" = sum
+      - all_sum += sum
+  /! ряд с ячейками тела таблицы
+  tr
+    td
+    td
+    td style="border: 1px solid grey;" Итого:
+    td style="border: 1px solid grey;" = all_sum
