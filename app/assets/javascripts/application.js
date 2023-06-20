@@ -165,27 +165,48 @@ var updateMobileSize = function(){
   }
 }
 
-var create_slider_ui= function(block, block_inp_min, block_inp_max, max_val, step){
-  block.slider({
-    min: 0,
-    max: max_val,
-    values: [block_inp_min.val(), block_inp_max.val()],
-    range: true,
-    step: step,
-    stop: function(event, ui) {
-      block_inp_min.val(block.slider("values", 0));
-      block_inp_max.val(block.slider("values", 1));
-    },
-    slide: function(event, ui){
-      block_inp_min.val(block.slider("values", 0));
-      block_inp_max.val(block.slider("values", 1));
-    },
-
-  });
-}
+// var create_slider_ui= function(block, block_inp_min, block_inp_max, max_val, step){
+//   block.slider({
+//     min: 0,
+//     max: max_val,
+//     values: [block_inp_min.val(), block_inp_max.val()],
+//     range: true,
+//     step: step,
+//     stop: function(event, ui) {
+//       block_inp_min.val(block.slider("values", 0));
+//       block_inp_max.val(block.slider("values", 1));
+//     },
+//     slide: function(event, ui){
+//       block_inp_min.val(block.slider("values", 0));
+//       block_inp_max.val(block.slider("values", 1));
+//     },
+//
+//   });
+// }
 
 $(document).ready(function(){
-  $(".sf-input-select").chosen();
+
+  var snapValues = [
+    $('input#min_vors_slide'),
+    $('input#max_vors_slide')
+  ];
+  var snapSlider = $('#dlina_vorsa_slide');
+
+  noUiSlider.create(snapSlider[0], {
+    start: [parseInt(snapSlider.data("min")), parseInt(snapSlider.data("max"))],
+    step: 1,
+    connect: true,
+    range: {
+      'min': [0],
+      'max': [100]
+    }
+  });
+
+  snapSlider[0].noUiSlider.on('update', function (values, handle) {
+    snapValues[handle].val(parseInt(values[handle]));
+  });
+
+  $(".sf-input-select").chosen({width: "100%"});
 
   $(document).on('click', '.mobile-link-top .icon_wrapp', function(){
     var block_menu = $(this).closest(".mobile-link-top").find('#mobilelink');
@@ -230,15 +251,15 @@ $(document).ready(function(){
 
   })
 
-  create_slider_ui(
-    $(".sf-meta-range-slider[data-sf-field-name='dlina_vorsa']"),
-    $(".sf-input-range-number.sf-range-min.sf-input-number[name='dlina_vorsa[]']"),
-    $(".sf-input-range-number.sf-range-max.sf-input-number[name='dlina_vorsa[]']"), 120, 1);
-
-  create_slider_ui(
-    $(".sf-meta-range-slider[data-sf-field-name='cost_1']"),
-    $(".sf-input-range-number.sf-range-min.sf-input-number[name='cost_1[]']"),
-    $(".sf-input-range-number.sf-range-max.sf-input-number[name='cost_1[]']"), 1600, 10);
+  // create_slider_ui(
+  //   $(".sf-meta-range-slider[data-sf-field-name='dlina_vorsa']"),
+  //   $(".sf-input-range-number.sf-range-min.sf-input-number[name='dlina_vorsa[]']"),
+  //   $(".sf-input-range-number.sf-range-max.sf-input-number[name='dlina_vorsa[]']"), 120, 1);
+  //
+  // create_slider_ui(
+  //   $(".sf-meta-range-slider[data-sf-field-name='cost_1']"),
+  //   $(".sf-input-range-number.sf-range-min.sf-input-number[name='cost_1[]']"),
+  //   $(".sf-input-range-number.sf-range-max.sf-input-number[name='cost_1[]']"), 1600, 10);
 
 
   $('.grower').click(function() {

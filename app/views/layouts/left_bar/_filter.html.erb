@@ -37,15 +37,12 @@
 
     <li class="sf-field-post-meta-dlina_vorsa" data-sf-field-name="dlina_vorsa" data-sf-field-type="post_meta" data-sf-field-input-type="range-slider" data-sf-meta-type="number">
       <h4>Высота ворса</h4>
-      <div data-start-min="0" data-start-max="90" data-min="0" data-max="90" data-step="0" data-decimal-places="0" data-thousand-seperator="" data-display-values-as="textinput"
-           data-sf-field-name="dlina_vorsa"
-           class="sf-meta-range sf-meta-range-slider">
-        <% min_vors, max_vors = params[:dlina_vorsa] %>
-        <label><input class="sf-input-range-number sf-range-min sf-input-number" min="0" max="90" step="0" name="dlina_vorsa[]" type="number" value="<%= min_vors.to_i %>" title=""/></label>
-        <span class="sf-range-values-seperator"> - </span>
-        <label><input class="sf-input-range-number sf-range-max sf-input-number" min="0" max="90" step="0" name="dlina_vorsa[]" type="number" value="<%= max_vors || 90 %>" title=""/></label>
-        <div class="meta-slider"></div>
+      <div class="values_slider_vors">
+        <input id="min_vors_slide" name="dlina_vorsa[]" type="number">
+        <input id="max_vors_slide" name="dlina_vorsa[]" type="number">
       </div>
+      <% min_vors, max_vors = params[:dlina_vorsa] %>
+      <div id="dlina_vorsa_slide" data-min="<%= min_vors || 0 %>" data-max="<%= max_vors || 100 %>"></div>
     </li>
 
     <li class="sf-field-submit" data-sf-field-name="submit" data-sf-field-type="submit" data-sf-field-input-type="">

@@ -582,11 +582,21 @@ form#order span{
   }
 }
 
+.values_slider_vors{
+  gap: 12px;
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.values_slider_vors input{
+  width: 50%;
+  height: 24px;
+}
+
 .sf-meta-range-slider.ui-slider.ui-corner-all{
   background: #fff5ee;
   margin-top: 10px;
   margin-bottom: 26px;
-  max-width: 220px;
 }
 .ui-slider-range.ui-corner-all.ui-widget-header{
   background-color: #526E91;
@@ -639,7 +649,6 @@ form#order span{
 
 form.searchandfilter input[type="submit"]{
   width: 100%;
-  max-width: 220px;
   height: 40px;
   margin-top: 16px;
   font-size: 16px;

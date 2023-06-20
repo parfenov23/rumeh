@@ -101,7 +101,11 @@ class HomeController < ApplicationController
   end
 
   def send_feedback
-    OrderRequestMailer.send_feedback(params).deliver
+    body = render_to_string('home/mailer/_send_feedback', layout: false, locals: {
+      curr_params: params,
+    })
+    DekoncApi.send_mail(params[:title], body)
+    # OrderRequestMailer.send_feedback(params).deliver
     render json: {success: true}
   end
 
