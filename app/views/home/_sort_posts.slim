@@ -21,6 +21,6 @@ form#order.bottom20 method="get"
         - params[key_f].each do |val|
           input type="hidden" name="#{key_f}[]" value=val
       - else
-        input type="hidden" name="#{key_f}" value=val
+        input type="hidden" name="#{key_f}" value=params[key_f]
 
   / button type="submit" Показать
