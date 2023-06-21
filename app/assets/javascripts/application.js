@@ -206,6 +206,14 @@ $(document).ready(function(){
     snapSlider[0].noUiSlider.on('update', function (values, handle) {
       snapValues[handle].val(parseInt(values[handle]));
     });
+
+    $.each(snapValues, function(n, e){
+      e[0].addEventListener('change', function () {
+        arr_v = $(e).attr("id") == "min_vors_slide" ? [$(e).val(), null] : [null, $(e).val()]
+        snapSlider[0].noUiSlider.set(arr_v);
+      });
+    })
+
   }
 
   $(".sf-input-select").chosen({width: "100%"});
