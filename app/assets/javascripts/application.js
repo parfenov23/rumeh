@@ -192,19 +192,21 @@ $(document).ready(function(){
   ];
   var snapSlider = $('#dlina_vorsa_slide');
 
-  noUiSlider.create(snapSlider[0], {
-    start: [parseInt(snapSlider.data("min")), parseInt(snapSlider.data("max"))],
-    step: 1,
-    connect: true,
-    range: {
-      'min': [0],
-      'max': [100]
-    }
-  });
+  if (snapSlider.length){
+    noUiSlider.create(snapSlider[0], {
+      start: [parseInt(snapSlider.data("min")), parseInt(snapSlider.data("max"))],
+      step: 1,
+      connect: true,
+      range: {
+        'min': [0],
+        'max': [100]
+      }
+    });
 
-  snapSlider[0].noUiSlider.on('update', function (values, handle) {
-    snapValues[handle].val(parseInt(values[handle]));
-  });
+    snapSlider[0].noUiSlider.on('update', function (values, handle) {
+      snapValues[handle].val(parseInt(values[handle]));
+    });
+  }
 
   $(".sf-input-select").chosen({width: "100%"});
 

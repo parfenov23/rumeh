@@ -24,7 +24,7 @@ class HomeController < ApplicationController
   def cart
     @left_bar = false
     items_ids = (session[:items] || []).map{|i| i["id"]}
-    @all_posts = Post.present_retail.with_categories.where(id: items_ids)
+    @all_posts = Post.find_by_retail.where(id: items_ids)
   end
 
   def save_order
