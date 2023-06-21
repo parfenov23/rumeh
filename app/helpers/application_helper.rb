@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def round_num(num)
-    (num % 1) == 0 ? num.to_i : num
+    ((num % 1) == 0 ? num.to_i : num).round(2)
   end
 
   def category_min(category)
