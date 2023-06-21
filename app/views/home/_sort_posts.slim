@@ -14,6 +14,10 @@ form#order.bottom20 method="get"
     option selected=(params[:per_page] == "24") value="24"  24
     option selected=(params[:per_page] == "48") value="48"  48
     option selected=(params[:per_page] == "100") value="100"  100
-  input type="hidden" name="post_type" value="post"
-  input type="hidden" name="s" value=params[:s]
+  / params[:color], params[:vors], params[:naznachenie], params[:dlina_vorsa]
+  - [:color, :vors, :naznachenie, :dlina_vorsa].each do |key_f|
+    - if params[key_f].present?
+      - params[key_f].each do |val|
+        input type="hidden" name="#{key_f}[]" value=val
+
   / button type="submit" Показать
