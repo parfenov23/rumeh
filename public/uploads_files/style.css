@@ -1269,6 +1269,12 @@ ul.price_categories {
 	-moz-box-sizing: border-box;
 }
 
+@media only screen and (max-width: 450px) {
+	#sidebar > li {
+		display: none;
+	}
+}
+
 #wp-calendar {
 	width: 100%;
 	margin: 0px;
