@@ -1270,7 +1270,7 @@ ul.price_categories {
 }
 
 @media only screen and (max-width: 450px) {
-	#sidebar > li {
+	#sidebar_slider_wrapp {
 		display: none;
 	}
 }
