@@ -1,9 +1,9 @@
 - title "ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ И ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ"
-- page = Post.find(8742)
+- page = Post.find(9143)
 #main-content.narrow.floatRight
   h1.page_title = page.post_title
   #desc
-    = raw page.post_content
+    = raw page.post_content.gsub("\r\n\r\n", "\r\n").gsub("\r\n", "<br>").gsub("\t", "").gsub("<br><br>", "<br>")
   .clear.bottom20
   / #comments_bar
   /   /! You can start editing here.
@@ -12,3 +12,15 @@
   /       /! If comments are closed.
   /       #respond
   /       /! end respond div
+css:
+  #desc ol {
+      margin-top: 8px;
+      margin-left: 12px;
+      margin-bottom: 0px;
+      font-size: 18px;
+      color: black;
+  }
+
+  #desc ol strong{
+      color: black;
+  }
