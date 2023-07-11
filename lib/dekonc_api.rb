@@ -45,9 +45,9 @@ class DekoncApi
       cache_time: 20
     })
 
-    curr_val = ((result.dig(:ValCurs, :Valute) || [{}]).find{|t| t[:CharCode] == "USD"} || {})[:Value].to_f
+    curr_val = ((result.dig(:ValCurs, :Valute) || [{}]).find{|t| t[:CharCode] == "USD"} || {})[:Value].gsub(",", ".").to_f
     setting_val = Option.find_by_option_name("wpshop.usd_retail").option_value.to_f
-    curr_val < setting_val ? setting_val : curr_val
+    [curr_val, setting_val].max
   end
 
   def self.send_get(url, curr_domain = default_url)
