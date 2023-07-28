@@ -61,7 +61,7 @@ class HomeController < ApplicationController
     id = Time.now.to_i.to_s.last(6)
     items = session[:items]
     items_ids = (items || []).map{|i| i["id"]}
-    all_posts = Post.present_retail.with_categories.where(id: items_ids)
+    all_posts = Post.present_retail.where(id: items_ids)
     body = render_to_string('home/mailer/_send_request', layout: false, locals: {
       items: items,
       curr_params: params,
