@@ -86,7 +86,7 @@ class Post < ApplicationRecord
 
   scope :search_by_title, lambda { |search_text|
     search_text = "%#{search_text.strip}%".mb_chars.downcase.to_s
-    where('lower(te0posts.post_title) LIKE ?', search_text)
+    where('lower(te0posts.post_title) LIKE :search or lower(te0posts.post_content) LIKE :search', search: search_text)
   }
 
   scope :other_filter_taxonomy, lambda { |type, value|

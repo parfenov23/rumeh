@@ -67,4 +67,8 @@ module ApplicationHelper
   def get_usd_rub
     @get_usd_rub ||= DekoncApi.usd_rub
   end
+
+  def content_normalize(text)
+    text.gsub("\r\n\r\n", "\r\n").gsub("\r\n", "<br>").gsub("\t", "").gsub("<br><br>", "<br>")
+  end
 end

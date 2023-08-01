@@ -354,6 +354,12 @@ $(document).ready(function(){
 
 });
 
+var js_update_order_sort = function(){
+  var form = $("form#order");
+  var curr_url = window.location.pathname.replace(/\/page\/[0-9]+/, "") + "?" + form.serialize();
+  window.location.href = curr_url
+}
+
 var showBlockFixedCart = function(){
   var originBlock = $(".carBoxOriginal");
   $(window).scroll(function() {
@@ -383,15 +389,16 @@ $(window).load(function() {
   after_load_img();
 
   showBlockFixedCart();
-  $('#slideshow').nivoSlider({
-    effect: 'fade',
-    animSpeed: 600,
-    pauseTime: 4500,
-    controlNav: false,
-    directionNav: true
-  });
 
-  if (($('#slideshow').length > 0)&&($("#banner_center").length == 0)) {
+  // $('#slideshow').nivoSlider({
+  //   effect: 'fade',
+  //   animSpeed: 600,
+  //   pauseTime: 4500,
+  //   controlNav: false,
+  //   directionNav: true
+  // });
+
+  if (($('#slideshow').length > 0) && ($("#banner_center").length == 0)) {
     $('#sidebar').addClass('absolut_slider');
   }
 

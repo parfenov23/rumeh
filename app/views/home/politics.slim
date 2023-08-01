@@ -3,7 +3,7 @@
 #main-content.narrow.floatRight
   h1.page_title = page.post_title
   #desc
-    = raw page.post_content.gsub("\r\n\r\n", "\r\n").gsub("\r\n", "<br>").gsub("\t", "").gsub("<br><br>", "<br>")
+    = raw content_normalize(page.post_content)
   .clear.bottom20
   / #comments_bar
   /   /! You can start editing here.

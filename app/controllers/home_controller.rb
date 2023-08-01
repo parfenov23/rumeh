@@ -18,7 +18,12 @@ class HomeController < ApplicationController
   end
 
   def item
-    @post = Post.present_retail.with_categories.find(params[:id])
+    @post = Post.present_retail.find_by_retail.with_categories.find(params[:id])
+    return redirect_to not_found_page_path if @post.id.nil?
+  end
+
+  def not_found
+    render layout: false, status: 404
   end
 
   def cart
@@ -49,7 +54,7 @@ class HomeController < ApplicationController
 
   def category
     @find_category = DekoncApi.find_category(params[:id])
-    @find_posts = Post.find_by_categories(params[:id]).present_retail
+    @find_posts = Post.find_by_retail.find_by_categories(params[:id]).present_retail
     get_items_by_page
 
     # if params[:orderby] == "meta_value_num"

@@ -5,7 +5,7 @@
       <h4>Цвет</h4>
       <label>
         <select data-combobox="1" data-placeholder="Все" data-operator="or" multiple="" name="color[]" class="sf-input-select" title="">
-          <% TermTaxonomy.where(taxonomy: "color").joins(:term).includes(:term).each do |taxonomy| %>
+          <% TermTaxonomy.where(taxonomy: "color").joins(:term).includes(:term).order("te0terms.name").each do |taxonomy| %>
             <%= content_tag(:option, taxonomy.term.name, class: "sf-level-0", value: taxonomy.term.slug, selected: (params[:color] || []).include?(taxonomy.term.slug)) %>
           <% end %>
         </select>
@@ -16,7 +16,7 @@
       <h4>Назначение</h4>
       <label>
         <select data-combobox="1" data-placeholder="Все" data-operator="or" multiple="" name="naznachenie[]" class="sf-input-select" title="">
-          <% TermTaxonomy.where(taxonomy: "naznachenie").joins(:term).includes(:term).each do |taxonomy| %>
+          <% TermTaxonomy.where(taxonomy: "naznachenie").joins(:term).includes(:term).order("te0terms.name").each do |taxonomy| %>
             <%= content_tag(:option, taxonomy.term.name, class: "sf-level-0", value: taxonomy.term.slug, selected: (params[:naznachenie] || []).include?(taxonomy.term.slug)) %>
           <% end %>
         </select>
@@ -28,7 +28,7 @@
       <label>
         <select data-combobox="1" name="vors[]" class="sf-input-select" title="">
           <option class="sf-level-0 sf-item-0 sf-option-active" selected="" data-sf-count="0" value="">Все</option>
-          <% TermTaxonomy.where(taxonomy: "vors").joins(:term).includes(:term).each do |taxonomy| %>
+          <% TermTaxonomy.where(taxonomy: "vors").joins(:term).includes(:term).order("te0terms.name").each do |taxonomy| %>
             <%= content_tag(:option, taxonomy.term.name, class: "sf-level-0", value: taxonomy.term.slug, selected: (params[:vors] || []).include?(taxonomy.term.slug)) %>
           <% end %>
         </select>

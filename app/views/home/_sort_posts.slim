@@ -1,15 +1,15 @@
-form#order.bottom20 method="get"
+form#order.bottom20 method="get" data-id=params[:id]
   span Сортировать
-  select name="orderby" onchange="this.form.submit()" 
+  select name="orderby" onchange="js_update_order_sort();"
     option value="title" selected=(params[:orderby] == "title") по заголовку
     / option selected=(params[:orderby] == "date") value="date"  по дате
     option selected=(params[:orderby] == "retail_1") value="retail_1"  по цене
     / option value="rand"  случайно
-  select.right15 name="order" onchange="this.form.submit()" 
+  select.right15 name="order" onchange="js_update_order_sort();"
     option selected=(params[:order] == "asc") value="asc"  увеличение
     option selected=(params[:order] == "desc") value="desc"  уменьшение
   span Показать на странице:
-  select name="per_page" onchange="this.form.submit();" 
+  select name="per_page" onchange="js_update_order_sort();"
     option selected=(params[:per_page] == "12") value="12"  12
     option selected=(params[:per_page] == "24") value="24"  24
     option selected=(params[:per_page] == "48") value="48"  48

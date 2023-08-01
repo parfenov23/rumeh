@@ -21,7 +21,7 @@ table style="border: 1px solid grey;width: 100%;"
       td style="border: 1px solid grey;" = item['title']
       td style="border: 1px solid grey;" = retail
       td style="border: 1px solid grey;" = item['count']
-      - sum = (retail * item['count'])
+      - sum = (retail * item['count']).round(2)
       td style="border: 1px solid grey;" = sum
       - all_sum += sum
   /! ряд с ячейками тела таблицы

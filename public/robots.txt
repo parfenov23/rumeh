@@ -1,5 +1,19 @@
-# See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
-#
-# To ban all spiders from the entire site uncomment the next two lines:
-# User-agent: *
-# Disallow: /
+User-agent: *
+Disallow: */page
+Disallow: */?page=
+Disallow: /cart/
+Disallow: /*?search=
+Disallow: /*?post_type=
+Disallow: /new_posts/*
+
+User-agent: Yandex
+Disallow: */page
+Disallow: */?page=
+Disallow: /cart/
+Disallow: /*?search=
+Disallow: /*?post_type=
+Disallow: /new_posts/*
+Clean-param: _sf_submit&_sfm_dlina_vorsa&_sfm_type_of_ritail&_sft_color&_sft_naznachenie&_sft_vors&sf_paged&sfid
+Clean-param: page /*
+
+Sitemap: https://rumeh.ru/sitemap.xml
