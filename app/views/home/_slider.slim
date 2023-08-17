@@ -18,9 +18,12 @@
 /   /! #slideshow
 / /! #slideshow_wrapp 
 
-#slideshow_wrapp.narrow.floatRight.bottom30.relat style=("display: block;") 
-  #slideshow.nivoSlider
+#slideshow_wrapp.narrow.floatRight.bottom30.relat style=("display: block;")
+  #slideshow.cycle-slideshow.slideshow.horizontal data-cycle-fx="overlay" data-cycle-timeout="7000" data-cycle-slides="a.slider_banner" data-cycle-width="100%" data-cycle-next=".nivo-nextNav" data-cycle-prev=".nivo-prevNav"
     - Post.find_by_slider("rumeh").each do |slider|
       - if get_post_meta_val(slider, "Thumbnail").present?
-        a href=get_post_meta_val(slider, "slider_url")
+        a.slider_banner href=get_post_meta_val(slider, "slider_url")
           img src=get_post_meta_val(slider, "Thumbnail")
+  .nivo-directionNav
+    a.nivo-nextNav href="javascript:void(0)"
+    a.nivo-prevNav href="javascript:void(0)"

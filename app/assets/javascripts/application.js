@@ -390,14 +390,6 @@ $(window).load(function() {
 
   showBlockFixedCart();
 
-  // $('#slideshow').nivoSlider({
-  //   effect: 'fade',
-  //   animSpeed: 600,
-  //   pauseTime: 4500,
-  //   controlNav: false,
-  //   directionNav: true
-  // });
-
   if (($('#slideshow').length > 0) && ($("#banner_center").length == 0)) {
     $('#sidebar').addClass('absolut_slider');
   }

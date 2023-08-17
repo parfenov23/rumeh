@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "feedback" => "home#feedback"
   get "send_feedback" => "home#send_feedback"
   get "news" => "home#news"
+  get "sitemap.xml", :to => "home#sitemap", :defaults => {:format => :xml}
   get "not_found" => "home#not_found", as: "not_found_page"
   root :to => "home#index"
 end

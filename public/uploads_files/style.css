@@ -405,10 +405,10 @@ a img {
 }
 
 /* Direction nav styles (e.g. Next & Prev) */
-#slideshow .nivo-directionNav a {
+#slideshow_wrapp .nivo-directionNav a {
 	position:absolute;
 	top:50%;
-	z-index:9;
+	z-index:101;
 	margin-top: -37px;
 	cursor:pointer;
 	display:block;
@@ -422,15 +422,15 @@ a img {
   transition: all 200ms ease-in-out;
 }
 
-#slideshow  a.nivo-nextNav  {
+#slideshow_wrapp  a.nivo-nextNav  {
 	background: url(images/camera_next.png) no-repeat 0 0;
 }
 
-#slideshow a.nivo-prevNav {
+#slideshow_wrapp a.nivo-prevNav {
 	background: url(images/camera_prev.png) no-repeat 0 0;
 }
 
-#slideshow .nivo-directionNav a:hover {
+#slideshow_wrapp .nivo-directionNav a:hover {
 	opacity: 0.5;
 }
 
