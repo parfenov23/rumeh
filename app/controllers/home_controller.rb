@@ -26,6 +26,10 @@ class HomeController < ApplicationController
     render layout: false, status: 404
   end
 
+  def sitemap
+    render layout: false, status: 200
+  end
+
   def cart
     @left_bar = false
     items_ids = (session[:items] || []).map{|i| i["id"]}
