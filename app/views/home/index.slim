@@ -39,10 +39,9 @@
     /     option value="48"  48
     /     option value="100"  100
     .clear
-    #vitrina_inn.clearfix
-      - cache @post do
-        - @posts.each do |post|
-          = render "item", {post: post}
+    #vitrina_inn.clearfix 
+      - @posts.each do |post|
+        = render "item", {post: post}
     .clear
   /! #vitrina
   .clear
