@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
   def index
     # @posts = DekoncApi.posts({per_page: 20})
-    @posts = Post.find_by_retail.find_by_tags(669).limit(20)
+    @posts = Post.find_by_retail.find_by_tags(669)
     # if params[:orderId].present?
     #   @find_payment_order = DekoncApi.find_payment(params[:orderId])
     #   @payment_order_id =  @find_payment_order.orderNumber rescue nil
